@@ -3,6 +3,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const sendmail = require("./SendMail");
 
 // const sendmail = require("./SendMail");
 
@@ -51,7 +52,7 @@ const middleware = (req, res, next) => {
 
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
-
+  console.log(email);
   userModel
     //findOne is query of mongo use to find atleast 1 document and return
     .findOne({ email: email })
@@ -68,6 +69,7 @@ app.post("/LoginPage", (req, res) => {
         }
       } else {
         res.send({ message: "user mail not found" });
+        console.log("not found");
       }
     })
     .catch((err) => {
@@ -80,7 +82,7 @@ app.post("/LoginPage", (req, res) => {
 //>>>>>>>>>>>>>>>>  SECTION FOR REGISTER  <<<<<<<<<<<<<<<<<<<<<<
 
 //get geta from link
-app.post("/register", (req, res) => {
+/*app.post("/register", (req, res) => {
   const { name, email, password, otp } = req.body;
 
   var newOtp = Math.floor(Math.random() * 1000000);
@@ -119,6 +121,7 @@ app.post("/register", (req, res) => {
     res.send({ message: "incorrect OTP" });
   }
 });
+*/
 
 app.get("/loop", (req, res) => {
   res.send("there is a loop in thhis projeccts");
@@ -182,6 +185,78 @@ app.get("/products", (req, res) => {
   }
   gettingItems();
 });
+
+//generate otp link
+
+//creating schema for saving otp and usermail to backend
+const otpSchema = new mongoose.Schema({
+  email: "string",
+  otp: "string",
+});
+
+//creating otp model for matching enterd data with scheme and also this is be collection's name
+const otpModel = new mongoose.model("otpModel", otpSchema);
+
+app.post("/generateotp", (req, res) => {
+  console.log(req.body);
+  const newotp = Math.floor(Math.random() * 100000);
+  const toSendMail = {
+    otp: newotp,
+    email: req.body.email,
+  };
+  // sendmail(toSendMail);
+
+  //creating new instance each time for new user
+  const newObj = new otpModel({
+    email: req.body.email,
+    otp: newotp,
+  });
+
+  //saving data into database
+  newObj
+    .save()
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+});
+
+app.post("/verifyotp", (req, res) => {
+  //destructuring values
+
+  const { name, email, password, otp } = req.body;
+  console.log(password);
+  //searching for otp in data base
+  otpModel.findOne({ email: email, otp: otp }).then((found) => {
+    if (found) {
+      console.log("found");
+
+      //registering new user after verification
+      const newUser = new userModel({
+        name: name,
+        email: email,
+        password: password,
+      });
+
+      userModel.findOne({ email: email }).then((found) => {
+        if (found) {
+          console.log("user already exist");
+          res.send({ message: "user already exist" });
+        } else {
+          {
+            //if !found save new user to database
+            newUser.save().then((result) => {
+              console.log("saved");
+              res.send({ message: "user registerd successfully" });
+            });
+          }
+        }
+      });
+    } else {
+      console.log("not found");
+      res.send({ message: "incorrect otp" });
+    }
+  });
+});
+
 
 //listen for starting server on port
 app.listen(9191, console.log("port started on 9191"));

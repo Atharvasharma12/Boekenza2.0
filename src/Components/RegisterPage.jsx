@@ -50,10 +50,25 @@ function RegisterPage() {
     } else alert("invalid");
   };
 
+
   const generateOTP = () => {
     axios
-      .post("http://localhost:9191/generateOTP", userData.email)
-      .then((res) => console.log(res))
+      .post("http://localhost:9191/generateotp", userData)
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+      })
+      .catch((err) => console.log(err));
+    setShowOtp(true);
+  };
+
+  const verifyotp = () => {
+    axios
+      .post("http://localhost:9191/verifyotp", userData)
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -103,7 +118,7 @@ function RegisterPage() {
               onChange={handelChange}
             />
             <div className="registerButton">
-              <button onClick={handelRegister}>Generate OTP</button>
+              <button onClick={generateOTP}>Generate OTP</button>
             </div>
 
             {showOtp ? (
@@ -114,11 +129,11 @@ function RegisterPage() {
                   name="otp"
                   value={userData.otp}
                   onChange={handelChange}
-                  type="password"
+                  type="text"
                   placeholder="OTP"
                 />
                 <span>An otp sent to your mail id</span>
-                <button onClick={handelOtp}>Register</button>
+                <button onClick={verifyotp}>Verify</button>
                 <button>resend otp</button>
               </>
             ) : (

@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.lolo{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+.registerMain{
+border: 1px solid black;
+box-shadow: 0px 0px 15px 0px black;
+width: 23%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-items: center;
+}
+
+.registerForm{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

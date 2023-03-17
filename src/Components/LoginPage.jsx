@@ -50,13 +50,7 @@ function LoginPage() {
 
   return (
     <>
-      {isUser && isUser._id ? (
-        <h1>
-          hello {name} user id is {_id}{" "}
-        </h1>
-      ) : (
-        <h1>welcom</h1>
-      )}
+      {isUser && isUser._id ? <h1>hello {name} </h1> : <h1>welcome</h1>}
 
       <div className="lolo">
         <div className="loginMain">

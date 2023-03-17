@@ -12,17 +12,18 @@ async function sendmail(data) {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    service: "gmail",
+    host: "smtp.gmail.com",
+    // port: 587,
     auth: {
-      user: "bo.marvin9@ethereal.email",
-      pass: "4352sGMJpGcdusAvH8",
+      user: "atharvasharma20260@acropolis.in",
+      pass: "",
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: "<bo.marvin9@ethereal.email>", // sender address
+    from: "atharvasharma20260@acropolis.in", // sender address
     to: `${data.email}`, // list of receivers
     subject: "Registration verification", // Subject line
     text: `otp for verification is ${data.otp}`, // plain text body

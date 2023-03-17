@@ -204,7 +204,7 @@ app.post("/generateotp", (req, res) => {
     otp: newotp,
     email: req.body.email,
   };
-  // sendmail(toSendMail);
+  sendmail(toSendMail);
 
   //creating new instance each time for new user
   const newObj = new otpModel({

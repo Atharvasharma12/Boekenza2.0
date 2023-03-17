@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 function Home() {
   return (
     <>
-      <h1>this is home page</h1>
+      <h1>home page</h1>
 
       <Link to="/LoginPage" element={LoginPage}>
         <button>Login</button>

@@ -5,6 +5,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
 function Home() {
+  //use selector function of redux use to get values from reduxStore
   const { products } = useSelector((state) => state.pList);
 
   return (
@@ -16,8 +17,10 @@ function Home() {
       </Link>
 
       <div>
+        {/* map is higher order fuction use to iterate every item present in object */}
         {products.map((singleProduct, id) => {
           return (
+            //we have to give key to every div created from map to make evry item unique
             <div key={id}>
               <h4>{singleProduct.productName}</h4>
               <h4>{singleProduct.productCategory}</h4>

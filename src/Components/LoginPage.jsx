@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function LoginPage() {
   const [isUser, setIsUSer] = useState({});
@@ -46,16 +46,16 @@ function LoginPage() {
   };
 
   //selector to use values from reducres
-  const { name, _id } = useSelector((state) => state.custom);
+  // const { name } = useSelector((state) => state.custom);
 
   return (
     <>
-      {isUser && isUser._id ? <h1>hello {name} </h1> : <h1>welcome</h1>}
+      {/* {isUser && isUser._id ? <h1>hello {name} </h1> : <h1>welcome</h1>} */}
 
-      <div className="lolo">
+      <div className="LoginFullPage">
         <div className="loginMain">
           <div className="loginBoxHeading">
-            <h4>Login</h4>
+            <h2>Login</h2>
           </div>
           <div className="loginForm">
             <label>User Name</label>
@@ -76,21 +76,24 @@ function LoginPage() {
               placeholder="Password"
             />
             <div className="loginButton">
-              {isUser && isUser._id ? (
-                <div>
+              {true ? (
+                <div className="logoutButton">
                   <button onClick={handelLogOut}>Logout</button>
+
                   <Link to="UploadProduct">
                     <button>Upload Product</button>
                   </Link>
                 </div>
               ) : (
-                <button onClick={handelLogin}>Login</button>
+                <>
+                  <button onClick={handelLogin}>Login</button>
+                  <div className="signUpButton">
+                    <Link to="RegisterPage">
+                      <button>Register</button>
+                    </Link>
+                  </div>
+                </>
               )}
-            </div>
-            <div className="signUpButton">
-              <Link to="RegisterPage">
-                <button>Register</button>
-              </Link>
             </div>
           </div>
         </div>

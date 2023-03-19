@@ -3,19 +3,31 @@ body {
   padding: 0;
 }
 
-.lolo {
+.LoginFullPage {
   display: flex;
   justify-content: center;
   margin-top: 10%;
 }
 
 .loginMain {
-  border: 3px solid black;
-  width: 23%;
+  border: 1px solid black;
+  width: 250px;
+  height: 275px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
+}
+
+.loginMain input {
+  border: none;
+  outline: none;
+  height: 25px;
+  background: #f8f8f8;
+  border-radius: 3px;
+  width: 227px;
+  border-radius: 5px;
 }
 
 .loginForm {
@@ -23,9 +35,18 @@ body {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
-input{
+.loginForm button {
+  
+  
+}
+
+.logoutButton link{
+
+}
+
+input {
   outline: none;
 }

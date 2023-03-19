@@ -4,7 +4,7 @@ import LoginPage from "./LoginPage";
 import { BiSearchAlt2 } from "react-icons/bi";
 
 function Home() {
-  //comment is added
+  //comment is added extended
 
   return (
     <>

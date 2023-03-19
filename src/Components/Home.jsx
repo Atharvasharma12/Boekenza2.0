@@ -8,8 +8,6 @@ function Home() {
     <>
       <h1>Boekenza</h1>
       <BiSearchAlt2 />
-
-      
       <Link to="/LoginPage" element={LoginPage}>
         <button>Login</button>
       </Link>

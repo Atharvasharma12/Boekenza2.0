@@ -4,7 +4,7 @@ import LoginPage from "./LoginPage";
 import { BiSearchAlt2 } from "react-icons/bi";
 
 function Home() {
-  //comment is added extended
+  //comment is added this line will create conflict extended
 
   return (
     <>

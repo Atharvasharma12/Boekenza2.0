@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
+
 function LoginPage() {
+  
   const [isUser, setIsUSer] = useState({});
   const [userData, setUserData] = useState({
     email: "",
@@ -76,21 +78,25 @@ function LoginPage() {
               placeholder="Password"
             />
             <div className="loginButton">
-              {true ? (
+              {false ? (
                 <div className="logoutButton">
+                  <br />
                   <button onClick={handelLogOut}>Logout</button>
 
-                  <Link to="UploadProduct">
-                    <button>Upload Product</button>
-                  </Link>
+                  <p>
+                    <Link to="UploadProduct">Want to upload your product </Link>
+                  </p>
                 </div>
               ) : (
                 <>
-                  <button onClick={handelLogin}>Login</button>
-                  <div className="signUpButton">
-                    <Link to="RegisterPage">
-                      <button>Register</button>
-                    </Link>
+                  <br />
+                  <div className="logoutButton">
+                    <button onClick={handelLogin}>Login</button>
+                    <div className="signUpButton">
+                      <Link to="RegisterPage">
+                        <button>Register</button>
+                      </Link>
+                    </div>
                   </div>
                 </>
               )}

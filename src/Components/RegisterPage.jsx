@@ -23,33 +23,32 @@ function RegisterPage() {
   };
 
   const [showOtp, setShowOtp] = useState(false);
-  const handelOtp = () => {
-    const { name, email, password, confirmPassword, otp } = userData;
-    console.log(otp);
-    if (name && email && password && password === confirmPassword) {
-      setShowOtp(true);
-      if (showOtp) {
-        axios
-          .post("http://localhost:9191/register", userData)
-          .then((res) => alert(res.data.message))
-          .catch((err) => alert(err));
-      }
-    } else alert("invalid");
-  };
+  // const handelOtp = () => {
+  //   const { name, email, password, confirmPassword, otp } = userData;
+  //   console.log(otp);
+  //   if (name && email && password && password === confirmPassword) {
+  //     setShowOtp(true);
+  //     if (showOtp) {
+  //       axios
+  //         .post("http://localhost:9191/register", userData)
+  //         .then((res) => alert(res.data.message))
+  //         .catch((err) => alert(err));
+  //     }
+  //   } else alert("invalid");
+  // };
 
-  const handelRegister = () => {
-    const { name, email, password, confirmPassword } = userData;
+  // const handelRegister = () => {
+  //   const { name, email, password, confirmPassword } = userData;
 
-    //to check all the conditions
-    if (name && email && password && password === confirmPassword) {
-      axios
-        .post("http://localhost:9191/register", userData)
-        .then((res) => alert(res.data.message))
-        .catch((err) => alert(err));
-      setShowOtp(true);
-    } else alert("invalid");
-  };
-
+  //   //to check all the conditions
+  //   if (name && email && password && password === confirmPassword) {
+  //     axios
+  //       .post("http://localhost:9191/register", userData)
+  //       .then((res) => alert(res.data.message))
+  //       .catch((err) => alert(err));
+  //     setShowOtp(true);
+  //   } else alert("invalid");
+  // };
 
   const generateOTP = () => {
     axios

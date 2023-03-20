@@ -4,6 +4,8 @@ import LoginPage from "./LoginPage";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
+//this page is for demostration
+
 function Home() {
   //use selector function of redux use to get values from reduxStore
   const { products } = useSelector((state) => state.pList);

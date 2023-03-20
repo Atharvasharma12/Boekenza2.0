@@ -76,7 +76,7 @@ function RegisterPage() {
       <div className="lolo">
         <div className="registerMain">
           <div className="registerBoxHeading">
-            <h4>register</h4>
+            <h4>Sign Up</h4>
           </div>
 
           <div className="registerForm">
@@ -86,7 +86,7 @@ function RegisterPage() {
               value={userData.name}
               name="name"
               type="text"
-              placeholder="Name"
+              placeholder="Enter your beutiful name"
               onChange={handelChange}
             />
             <br />
@@ -95,7 +95,7 @@ function RegisterPage() {
               value={userData.email}
               name="email"
               type="text"
-              placeholder="Email"
+              placeholder="Enter your gmail"
               onChange={handelChange}
             />
             <br />
@@ -104,7 +104,7 @@ function RegisterPage() {
               value={userData.password}
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder="Enter your password"
               onChange={handelChange}
             />
             <br />
@@ -113,7 +113,7 @@ function RegisterPage() {
               value={userData.confirmPassword}
               name="confirmPassword"
               type="Password"
-              placeholder="confirmPassword"
+              placeholder="Enter again your Password"
               onChange={handelChange}
             />
             <div className="registerButton">

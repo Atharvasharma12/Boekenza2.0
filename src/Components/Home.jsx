@@ -23,6 +23,7 @@ function Home() {
           return (
             //we have to give key to every div created from map to make evry item unique
             <div key={id}>
+              <img src={singleProduct.productImg} alt="img" />
               <h4>{singleProduct.productName}</h4>
               <h4>{singleProduct.productCategory}</h4>
               <h4>{singleProduct.productDiscription}</h4>

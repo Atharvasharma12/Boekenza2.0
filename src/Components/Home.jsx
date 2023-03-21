@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
-import { BiSearchAlt2 } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import ProductList from "./ProductList";
 
@@ -12,8 +11,7 @@ function Home() {
 
   return (
     <>
-      <h1>Boekenza</h1>
-      <BiSearchAlt2 />
+      
       <Link to="/LoginPage" element={LoginPage}>
         <button>Login</button>
       </Link>

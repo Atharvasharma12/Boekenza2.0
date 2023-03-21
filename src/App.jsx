@@ -5,11 +5,13 @@ import RegisterPage from "./Components/RegisterPage";
 import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
+import Announcement from "./Components/Announcement";
 
 function App() {
   return (
     <>
       <Navbar/>
+      <Announcement/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

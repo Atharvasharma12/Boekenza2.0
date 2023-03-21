@@ -74,10 +74,10 @@ function RegisterPage() {
   return (
     <>
       <div className="lolo">
-        <div className="registerBoxHeading">
-          <h4>Sign Up</h4>
-        </div>
         <div className="registerMain">
+          <div className="registerBoxHeading">
+            <h4>Sign Up</h4>
+          </div>
           <div className="registerForm">
             <label>Name</label>
 

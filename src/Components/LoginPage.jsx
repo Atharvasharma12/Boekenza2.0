@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 function LoginPage() {
   
-  const [isUser, setIsUSer] = useState({});
+  const [isUser, setIsUSer] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -44,7 +44,7 @@ function LoginPage() {
 
   //for logout it willll empty isUser
   const handelLogOut = () => {
-    setIsUSer({});
+    setIsUSer(false);
   };
 
   //selector to use values from reducres
@@ -78,7 +78,7 @@ function LoginPage() {
               placeholder="Password"
             />
             <div className="loginButton">
-              {false ? (
+              {isUser ? (
                 <div className="logoutButton">
                   <br />
                   <button onClick={handelLogOut}>Logout</button>

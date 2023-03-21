@@ -32,50 +32,7 @@ export const productDetails = createReducer(initialProductDetails, {
 });
 
 const initialProductList = {
-  products: [
-    {
-      productName: "item 1",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-    {
-      productName: "item 2",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-    {
-      productName: "item 3",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-    {
-      productName: "item 4",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-    {
-      productName: "item 5",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-    {
-      productName: "item 6",
-      productCategory: "book",
-      productDiscription: "this is discription of a product",
-      productPrice: 399,
-      productImg: "book5.png",
-    },
-  ],
+  products: [],
 };
 
 export const productList = createReducer(initialProductList, {

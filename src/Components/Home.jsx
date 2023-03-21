@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { useSelector } from "react-redux";
-
+import ProductList from "./ProductList";
 
 function Home() {
   //use selector function of redux use to get values from reduxStore
@@ -18,7 +18,7 @@ function Home() {
       </Link>
 
       <div>
-        {/* map is higher order fuction use to iterate every item present in object */}
+        {/* map is higher order fuction use to iterate every item present in object
         {products.map((singleProduct, id) => {
           return (
             //we have to give key to every div created from map to make evry item unique
@@ -30,8 +30,10 @@ function Home() {
               <h4>{singleProduct.productPrice}</h4>
             </div>
           );
-        })}
+        })} */}
       </div>
+
+      <ProductList />
     </>
   );
 }

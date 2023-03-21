@@ -4,9 +4,12 @@ import LoginPage from "./Components/LoginPage";
 import RegisterPage from "./Components/RegisterPage";
 import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
+import Navbar from "./Components/Navbar";
+
 function App() {
   return (
     <>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

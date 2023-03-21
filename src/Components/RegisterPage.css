@@ -20,7 +20,7 @@ flex-direction: column;
 align-items: center;
 justify-items: center;
 border-radius: 7px;
-height: 350px;
+height: 360px;
 }
 
 .registerForm{
@@ -53,5 +53,6 @@ height: 350px;
     cursor: pointer;
 }
 
-
-
+.registerButton{
+    margin-top: 10px;
+}

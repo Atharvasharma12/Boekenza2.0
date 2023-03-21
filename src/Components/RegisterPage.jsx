@@ -74,11 +74,10 @@ function RegisterPage() {
   return (
     <>
       <div className="lolo">
+        <div className="registerBoxHeading">
+          <h4>Sign Up</h4>
+        </div>
         <div className="registerMain">
-          <div className="registerBoxHeading">
-            <h4>Sign Up</h4>
-          </div>
-
           <div className="registerForm">
             <label>Name</label>
 
@@ -122,18 +121,20 @@ function RegisterPage() {
 
             {showOtp ? (
               <>
-                <br />
-                <label>Enter OTP</label>
-                <input
-                  name="otp"
-                  value={userData.otp}
-                  onChange={handelChange}
-                  type="text"
-                  placeholder="OTP"
-                />
-                <span>An otp sent to your mail id</span>
-                <button onClick={verifyotp}>Verify</button>
-                <button>resend otp</button>
+                <div className="enterOTPMainBox">
+                  <br />
+                  <label>Enter OTP</label>
+                  <input
+                    name="otp"
+                    value={userData.otp}
+                    onChange={handelChange}
+                    type="text"
+                    placeholder="OTP"
+                  />
+                  <span>An otp sent to your mail id</span>
+                  <button onClick={verifyotp}>Verify</button>
+                  <button>resend otp</button>
+                </div>
               </>
             ) : (
               <></>

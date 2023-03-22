@@ -81,9 +81,7 @@
         <Left>
           <Logo>BOEKENZA.</Logo>
           <Desc>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don’t look even slightly believable.
+          We believe in reducing waste and providing our customers with affordable options that are both sustainable and functional.By purchasing pre-loved stationary items from our store, you're not only saving money but also contributing to a more sustainable future. Join us in our mission
           </Desc>
           <SocialContainer>
             <SocialIcon color="3B5999">
@@ -115,13 +113,13 @@
         <Right>
           <Title>Contact</Title>
           <ContactItem>
-            <IoLocationSharp style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
+            <IoLocationSharp style={{marginRight:"10px"}}/> AITR , Indore (M.P.)
           </ContactItem>
           <ContactItem>
             <BsFillTelephoneFill style={{marginRight:"10px"}}/> +1 234 56 78
           </ContactItem>
           <ContactItem>
-            <AiOutlineMail style={{marginRight:"10px"}} /> contact@lama.dev
+            <AiOutlineMail style={{marginRight:"10px"}} /> boekenza273644@gmail.com
           </ContactItem>
           <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
         </Right>

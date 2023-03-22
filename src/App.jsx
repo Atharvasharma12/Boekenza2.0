@@ -7,12 +7,17 @@ import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
 
+import Categories from "./Components/Categories";
+import Products from "./Components/Products";
 
 function App() {
   return (
     <>
       <Navbar/>
       <Announcement/>
+
+      <Categories/>
+      <Products/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

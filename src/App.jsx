@@ -9,6 +9,7 @@ import Announcement from "./Components/Announcement";
 
 import Categories from "./Components/Categories";
 import Products from "./Components/Products";
+import Contact from "./Components/Contact";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
       <Categories/>
       <Products/>
+      <Contact/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

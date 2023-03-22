@@ -6,14 +6,13 @@ import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
-import Slider from "./Components/Slider";
+
 
 function App() {
   return (
     <>
       <Navbar/>
       <Announcement/>
-      <Slider/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

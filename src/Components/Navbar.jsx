@@ -4,7 +4,7 @@ import {BiSearchAlt2 } from "react-icons/bi";
 import {BsCart3} from "react-icons/bs";
 
 const Container = styled.div`
-  height: 0.2px;
+  height: 60px;
 `;
 
 const Wrapper = styled.div`

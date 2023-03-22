@@ -51,14 +51,20 @@ function RegisterPage() {
   // };
 
   const generateOTP = () => {
-    axios
-      .post("http://localhost:9191/generateotp", userData)
-      .then((res) => {
-        console.log(res);
-        alert(res.data.message);
-      })
-      .catch((err) => console.log(err));
-    setShowOtp(true);
+    const { name, email, password, confirmPassword } = userData;
+    if (name && email && password == confirmPassword) {
+      axios
+        .post("http://localhost:9191/generateotp", userData)
+        .then((res) => {
+          console.log(res);
+          alert(res.data.message);
+          console.log(res.data.ispresent);
+          setShowOtp(true);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("Invalid");
+    }
   };
 
   const verifyotp = () => {

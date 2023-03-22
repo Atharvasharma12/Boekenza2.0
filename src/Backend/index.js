@@ -200,6 +200,24 @@ const otpModel = new mongoose.model("otpModel", otpSchema);
 app.post("/generateotp", (req, res) => {
   console.log(req.body);
   const newotp = Math.floor(Math.random() * 100000);
+  const { name, email, password, otp } = req.body;
+
+  userModel.findOne({ email: email }).then((found) => {
+    if (found) {
+      console.log("user already exist");
+      res.send({ message: "user already exist" });
+      res.send({ ispresent: true });
+    } else {
+      {
+        //if !found save new user to database
+        newUser.save().then((result) => {
+          console.log("saved");
+          res.send({ message: "user registerd successfully" });
+        });
+      }
+    }
+  });
+
   const toSendMail = {
     otp: newotp,
     email: req.body.email,

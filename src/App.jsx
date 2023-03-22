@@ -15,13 +15,21 @@ import Footer from "./Components/Footer";
 function App() {
   return (
     <>
-      <Navbar/>
-      <Announcement/>
+      {/* 
+    the order of displaying component was depend on the order of calling them
+     */}
+      <Announcement />
+      <Navbar />
 
-      <Categories/>
-      <Products/>
-      <Contact/>
-      <Footer/>
+      {/* if we call all the components below in thhis app component then throughout the website they will remain open in 
+    all the other components like if we open login page then also these all will remain open so insted of this
+    call all the below components in home page components 👍
+*/}
+
+      <Categories />
+      <Products />
+      <Contact />
+      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

@@ -10,6 +10,7 @@ import Announcement from "./Components/Announcement";
 import Categories from "./Components/Categories";
 import Products from "./Components/Products";
 import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Categories/>
       <Products/>
       <Contact/>
+      <Footer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

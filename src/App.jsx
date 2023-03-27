@@ -11,7 +11,6 @@ import Categories from "./Components/Categories";
 import Products from "./Components/Products";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
-
 function App() {
   return (
     <>

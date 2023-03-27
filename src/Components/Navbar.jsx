@@ -4,6 +4,7 @@ import {BiSearchAlt2 } from "react-icons/bi";
 import {BsCart3} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
+import Home from "./Home";
 
 const Container = styled.div`
   height: 60px;
@@ -67,7 +68,9 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>BOEKENZA.</Logo>
+          <Link to="/" element={Home}>
+            <Logo>BOEKENZA.</Logo>
+          </Link>
         </Center>
         <Right>
           <Link to="/LoginPage" element={LoginPage}>

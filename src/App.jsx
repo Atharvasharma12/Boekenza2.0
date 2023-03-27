@@ -6,11 +6,7 @@ import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
-import Slider from "./Components/Slider";
-import Categories from "./Components/Categories";
-import Products from "./Components/Products";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+
 function App() {
   return (
     <>
@@ -24,11 +20,7 @@ function App() {
     all the other components like if we open login page then also these all will remain open so insted of this
     call all the below components in home page components 👍
 */}
-      {/* <Slider/>
-      <Categories />
-      <Products />
-      <Contact />
-      <Footer /> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

@@ -3,7 +3,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ProductList from "./ProductList";
 
-
+import Slider from "./Slider";
+import Categories from "./Categories";
+import Products from "./Products";
+import Contact from "./Contact";
+import Footer from "./Footer";
 
 function Home() {
   //use selector function of redux use to get values from reduxStore
@@ -11,6 +15,12 @@ function Home() {
 
   return (
     <>
+      <Slider />
+      <Categories />
+      <Products />
+      <Contact />
+      <Footer />
+
       <div>
         {/* map is higher order fuction use to iterate every item present in object
         {products.map((singleProduct, id) => {

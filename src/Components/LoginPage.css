@@ -1,6 +1,7 @@
 :root {
-  --buttonColor : red;
+  
   --inputTypeColor: #f8f8f8;
+  --mycolor :#008080;
 }
 
 body {
@@ -50,12 +51,10 @@ body {
   border: none;
   height: 25px;
   border-radius: 7px;
-  background-color: var(--buttonColor);
+  background-color: var(--mycolor);
   color: white;
   cursor: pointer;
 }
-
-
 
 
 .logoutButton {

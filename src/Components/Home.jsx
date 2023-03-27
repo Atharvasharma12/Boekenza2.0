@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import LoginPage from "./LoginPage";
+
 import { useSelector } from "react-redux";
 import ProductList from "./ProductList";
 
@@ -12,10 +11,6 @@ function Home() {
 
   return (
     <>
-      <Link to="/LoginPage" element={LoginPage}>
-        <button>Login</button>
-      </Link>
-
       <div>
         {/* map is higher order fuction use to iterate every item present in object
         {products.map((singleProduct, id) => {

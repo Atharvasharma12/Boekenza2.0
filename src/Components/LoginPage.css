@@ -1,5 +1,5 @@
 :root {
-  --buttonColor: black;
+  --buttonColor : red;
   --inputTypeColor: #f8f8f8;
 }
 
@@ -55,13 +55,7 @@ body {
   cursor: pointer;
 }
 
-.loginForm button :hover {
-  background-color: black;
-}
 
-button :hover{
-  background-color: pink;
-}
 
 
 .logoutButton {
@@ -75,6 +69,7 @@ button :hover{
   font-size: 12px;
   text-decoration: none;
   color : black;
+
 }
 
 

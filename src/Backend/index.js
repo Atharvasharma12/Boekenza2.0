@@ -205,16 +205,13 @@ app.post("/generateotp", (req, res) => {
   userModel.findOne({ email: email }).then((found) => {
     if (found) {
       console.log("user already exist");
-      res.send({ message: "user already exist" });
-      res.send({ ispresent: true });
+      res.send({ message: "user already exist", isPresent: true });
     } else {
-      {
-        //if !found save new user to database
-        newUser.save().then((result) => {
-          console.log("saved");
-          res.send({ message: "user registerd successfully" });
-        });
-      }
+      //if !found save new user to database
+      // newUser.save().then((result) => {
+      //   console.log("saved");
+      // });
+      res.send({ message: "Enter OTP" });
     }
   });
 
@@ -222,7 +219,7 @@ app.post("/generateotp", (req, res) => {
     otp: newotp,
     email: req.body.email,
   };
-  sendmail(toSendMail);
+  // sendmail(toSendMail);
 
   //creating new instance each time for new user
   const newObj = new otpModel({

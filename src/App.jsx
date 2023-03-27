@@ -24,11 +24,11 @@ function App() {
     all the other components like if we open login page then also these all will remain open so insted of this
     call all the below components in home page components 👍
 */}
-      <Slider/>
+      {/* <Slider/>
       <Categories />
       <Products />
       <Contact />
-      <Footer />
+      <Footer /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import {BiSearchAlt2 } from "react-icons/bi";
 import {BsCart3} from "react-icons/bs";
+import { Link } from "react-router-dom";
+import LoginPage from "./LoginPage";
 
 const Container = styled.div`
   height: 60px;
@@ -30,7 +32,7 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
-  `;
+`;
 
 const Center = styled.div`
   flex: 1;
@@ -52,28 +54,30 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  `;
+`;
 
 const Navbar = () => {
   return (
     <Container>
-        <Wrapper>
-            <Left>
-            <SearchContainer>
+      <Wrapper>
+        <Left>
+          <SearchContainer>
             <Input placeholder="Search" />
             <BiSearchAlt2 style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
-            </Left>
-            <Center>
-            <Logo>BOEKENZA.</Logo>
-            </Center>
-            <Right>
-          <MenuItem>SIGN IN</MenuItem>
+        </Left>
+        <Center>
+          <Logo>BOEKENZA.</Logo>
+        </Center>
+        <Right>
+          <Link to="/LoginPage" element={LoginPage}>
+            <MenuItem>SIGN IN</MenuItem>
+          </Link>
           <MenuItem>
-            <BsCart3 style={{fontSize: 20}} />
+            <BsCart3 style={{ fontSize: 20 }} />
           </MenuItem>
-            </Right>
-        </Wrapper>
+        </Right>
+      </Wrapper>
     </Container>
   );
 };

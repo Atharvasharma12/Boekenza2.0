@@ -58,8 +58,8 @@ function RegisterPage() {
         .then((res) => {
           console.log(res);
           alert(res.data.message);
-          console.log(res.data.ispresent);
-          setShowOtp(true);
+          console.log(res.data.isPresent);
+          res.data.isPresent ? setShowOtp(false) : setShowOtp(true);
         })
         .catch((err) => console.log(err));
     } else {
@@ -122,7 +122,7 @@ function RegisterPage() {
               onChange={handelChange}
             />
             <div className="registerButton">
-              <button onClick={generateOTP}>Generate OTP</button>
+              <button onClick={generateOTP}>Proceed</button>
             </div>
 
             {showOtp ? (
@@ -139,7 +139,7 @@ function RegisterPage() {
                   />
                   <span>An otp sent to your mail id</span>
                   <button onClick={verifyotp}>Verify</button>
-                  <button>resend otp</button>
+                  <button onClick={generateOTP}>resend otp</button>
                 </div>
               </>
             ) : (

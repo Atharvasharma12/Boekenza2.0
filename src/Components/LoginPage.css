@@ -1,6 +1,7 @@
 :root {
-  --buttonColor: black;
+  
   --inputTypeColor: #f8f8f8;
+  --mycolor :#008080;
 }
 
 body {
@@ -50,17 +51,9 @@ body {
   border: none;
   height: 25px;
   border-radius: 7px;
-  background-color: var(--buttonColor);
+  background-color: var(--mycolor);
   color: white;
   cursor: pointer;
-}
-
-.loginForm button :hover {
-  background-color: black;
-}
-
-button :hover{
-  background-color: pink;
 }
 
 
@@ -75,6 +68,7 @@ button :hover{
   font-size: 12px;
   text-decoration: none;
   color : black;
+
 }
 
 

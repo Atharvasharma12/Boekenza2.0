@@ -30,6 +30,7 @@ function App() {
       <Products />
       <Contact />
       <Footer />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginPage" element={<LoginPage />} />

@@ -6,6 +6,7 @@ import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
+import AllProductList from "./Components/AllProductList";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="LoginPage/RegisterPage" element={<RegisterPage />} />
         <Route path="/LoginPage/UploadProduct" element={<UploadProduct />} />
         <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/AllProductList" element={<AllProductList />} />
       </Routes>
     </>
   );

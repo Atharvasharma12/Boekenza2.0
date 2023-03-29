@@ -2,22 +2,22 @@ export const sliderItems = [
   {
     id: 1,
     img: "WhatsApp Image 2023-03-27 at 22.20.35.jpeg",
-    title: "SUMMER SALE",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    title: "Boekenza",
+    desc: "Welcome to Boekenza",
     bg: "f5fafd",
   },
   {
     id: 2,
     img: "Screenshot_20230328-000238_ClearScanner.jpg",
-    title: "AUTUMN COLLECTION",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    title: "AMAZING COLLECTION",
+    desc: "NOTEBOOKS & STATIONARY",
     bg: "fcf1ed",
   },
   {
     id: 3,
     img: "WhatsApp Image 2023-03-27 at 22.32.39.jpeg",
-    title: "LOUNGEWEAR LOVE",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    title: "JOIN IN",
+    desc: "NOVELS",
     bg: "fbf0f4",
   },
 ];
@@ -26,17 +26,17 @@ export const categories = [
   {
     id: 1,
     img: "WhatsApp Image 2023-03-27 at 22.20.35.jpeg",
-    title: "Algorithems",
+    title: "ALGORITHMS",
   },
   {
     id: 2,
     img: "WhatsApp Image 2023-03-27 at 22.27.14.jpeg",
-    title: "Stationary",
+    title: "STATIONARY",
   },
   {
     id: 3,
     img: "WhatsApp Image 2023-03-27 at 22.32.39.jpeg",
-    title: "Novels",
+    title: "NOVELS",
   },
 ];
 

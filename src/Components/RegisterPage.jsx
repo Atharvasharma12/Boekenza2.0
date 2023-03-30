@@ -52,7 +52,7 @@ function RegisterPage() {
 
   const generateOTP = () => {
     const { name, email, password, confirmPassword } = userData;
-    if (name && email && password == confirmPassword) {
+    if (name && email && password && password == confirmPassword) {
       axios
         .post("http://localhost:9191/generateotp", userData)
         .then((res) => {

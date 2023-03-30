@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { sliderItems } from "../data";
+import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-
+import AllProductList from "./AllProductList";
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +13,6 @@ const Container = styled.div`
   overflow: hidden;
   padding-top: 20px;
 `;
-
 
 const Arrow = styled.div`
   width: 50px;
@@ -31,9 +31,9 @@ const Arrow = styled.div`
   right: ${(props) => props.direction === "right" && "10px"};
   z-index: 2;
   opacity: 0.5;
-  `;
+`;
 
-  const Wrapper = styled.div`
+const Wrapper = styled.div`
   height: 100%;
   display: flex;
   transition: all 1.5s ease;
@@ -80,21 +80,21 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-  const Slider = () => { 
-    const [slideIndex, setSlideIndex] = useState(0);
-    const handleClick = (direction) => {
-        if (direction === "left") {
-          setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
-        } else {
-          setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
-        }
-      }; 
+const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    }
+  };
 
-return (
+  return (
     <Container>
-     <Arrow direction="left" onClick={() => handleClick("left")}>
-      <IoIosArrowBack/>
-     </Arrow>
+      <Arrow direction="left" onClick={() => handleClick("left")}>
+        <IoIosArrowBack />
+      </Arrow>
       <Wrapper slideIndex={slideIndex}>
         {sliderItems.map((item) => (
           <Slide bg={item.bg} key={item.id}>
@@ -104,16 +104,18 @@ return (
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOP NOW</Button>
+              <Link to="AllProductList" element={AllProductList}>
+                <Button>SHOP NOW</Button>
+              </Link>
             </InfoContainer>
           </Slide>
-         ))}
+        ))}
       </Wrapper>
-     <Arrow direction="right" onClick={() => handleClick("right")}>
-     <IoIosArrowForward/>
-     </Arrow>
+      <Arrow direction="right" onClick={() => handleClick("right")}>
+        <IoIosArrowForward />
+      </Arrow>
     </Container>
-)
-  }
+  );
+};
 
 export default Slider;

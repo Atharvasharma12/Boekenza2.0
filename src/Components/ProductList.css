@@ -1,0 +1,18 @@
+.mainProductsDiv{
+
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 10px;
+    
+}
+
+.productDiv{
+    width: 13%;
+background-color: #f5fafd;
+border: 1px solid black;
+gap: 10px;
+}

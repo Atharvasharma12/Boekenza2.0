@@ -36,7 +36,12 @@ function UploadProduct() {
     //cheking for empty form
     const { productName, productCategory, productDiscription, productPrice } =
       productDetail;
-    if (productName && productCategory && productDiscription && productPrice) {
+    if (
+      productName &&
+      productCategory &&
+      productDiscription &&
+      productPrice > 0
+    ) {
       //sending product detail to backendend using axios
       axios
         .post("http://localhost:9191/UploadProduct", productDetail)
@@ -46,7 +51,7 @@ function UploadProduct() {
         })
         .catch((err) => console.log(err));
     } else {
-      alert("fill all the filds");
+      alert("Invalid");
     }
   };
 

@@ -20,6 +20,7 @@ const initialProductDetails = {
   productCategory: "",
   productDiscription: "",
   productPrice: "",
+  productImageURL: "",
 };
 
 export const productDetails = createReducer(initialProductDetails, {
@@ -28,6 +29,7 @@ export const productDetails = createReducer(initialProductDetails, {
     state.productCategory = action.payload.productCategory;
     state.productDiscription = action.payload.productDiscription;
     state.productPrice = action.payload.productPrice;
+    state.productImageURL = action.payload.productImageURL;
   },
 });
 

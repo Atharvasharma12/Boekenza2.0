@@ -16,7 +16,10 @@ function UploadProduct() {
     productCategory: "",
     productDiscription: "",
     productPrice: "",
+    productImageURL: "",
   });
+
+  const [image, setImage] = useState();
 
   const handelOnChange = (event) => {
     const { name, value } = event.target;
@@ -53,6 +56,26 @@ function UploadProduct() {
     } else {
       alert("Invalid");
     }
+
+    console.log(productDetail);
+  };
+
+  const handelImageUpload = () => {
+    const imageForm = new FormData();
+    imageForm.append("file", image);
+    imageForm.append("upload_preset", "Boekenza");
+    // console.log(imageForm);
+    axios
+      .post("https://api.cloudinary.com/v1_1/diyl2r9z2/image/upload", imageForm)
+      .then((res) => {
+        console.log("uploaded to cloudinary");
+        // console.log(res.data.secure_url);
+        setProductDetail({
+          ...productDetail,
+          productImageURL: res.data.secure_url,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -111,6 +134,16 @@ function UploadProduct() {
                 name="productPrice"
                 onChange={handelOnChange}
               />
+              <div>
+                <input
+                  type="file"
+                  name=""
+                  id=""
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+                <br />
+                <button onClick={handelImageUpload}>upload image</button>
+              </div>
             </div>
             <button onClick={handelSubmit}>Submit</button>
           </div>

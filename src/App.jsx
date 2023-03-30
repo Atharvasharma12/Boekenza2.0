@@ -6,6 +6,7 @@ import UploadProduct from "./Components/UploadProduct";
 import ProductList from "./Components/ProductList";
 import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
+import Cart from "./Components/Cart"
 
 function App() {
   return (
@@ -15,7 +16,6 @@ function App() {
      */}
       <Announcement />
       <Navbar />
-
       {/* if we call all the components below in thhis app component then throughout the website they will remain open in 
     all the other components like if we open login page then also these all will remain open so insted of this
     call all the below components in home page components 👍
@@ -27,6 +27,7 @@ function App() {
         <Route path="LoginPage/RegisterPage" element={<RegisterPage />} />
         <Route path="/LoginPage/UploadProduct" element={<UploadProduct />} />
         <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/Cart" element={<Cart/>} />
       </Routes>
     </>
   );

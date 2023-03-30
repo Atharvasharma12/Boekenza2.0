@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import Navbar from "./Navbar";
-import Announcement from "./Announcement";
 import Footer from "./Footer";
 import { mobile } from "../responsive";
 
@@ -154,8 +152,6 @@ const Button = styled.button`
 const Cart = () => {
   return (
     <Container>
-      <Announcement />
-      <Navbar />
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>

@@ -2,6 +2,9 @@
   import { ImSearch } from "react-icons/im";
   import { FiHeart } from "react-icons/fi";
   import styled from "styled-components";
+  import Cart from "./Cart"
+  import { Link } from "react-router-dom";
+
   
   const Info = styled.div`
     opacity: 0;
@@ -70,7 +73,10 @@
         <Image src={item.img} />
         <Info>
           <Icon>
+            <Link to="/Cart" element={Cart}>
             <CgShoppingCart />
+            </Link>
+            
           </Icon>
           <Icon>
             <ImSearch />

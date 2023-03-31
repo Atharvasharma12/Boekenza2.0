@@ -134,6 +134,7 @@ const productSchema = mongoose.Schema({
   productCategory: "string",
   productDiscription: "string",
   productPrice: "string",
+  productImageURL: "string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
@@ -142,8 +143,13 @@ app.post("/UploadProduct", (req, res) => {
   console.log(req.body);
 
   //fetching data from the data sent by link from uploadproduct page
-  const { productName, productCategory, productDiscription, productPrice } =
-    req.body;
+  const {
+    productName,
+    productCategory,
+    productDiscription,
+    productPrice,
+    productImageURL,
+  } = req.body;
 
   let newProduct = new productModel({
     //here LHS is for schema and RHS for giving data from user
@@ -151,6 +157,7 @@ app.post("/UploadProduct", (req, res) => {
     productCategory: productCategory,
     productDiscription: productDiscription,
     productPrice: productPrice,
+    productImageURL: productImageURL,
   });
 
   newProduct

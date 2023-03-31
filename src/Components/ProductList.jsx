@@ -29,6 +29,7 @@ function ProductList() {
         {item.map((element, id) => {
           return (
             <div key={id} className="productDiv">
+              <img src={element.productImageURL} alt="img" />
               <h2>{element.productName}</h2>
               <p>{element.productDiscription}</p>
               <h6>{element.productPrice}/-</h6>

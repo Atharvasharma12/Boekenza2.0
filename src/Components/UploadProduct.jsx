@@ -86,16 +86,16 @@ function UploadProduct() {
 
       <div className="mainForm">
         <div>
-          <div className="heading">
+          {/* <div className="heading">
             <h5>fill the details of your product</h5>
-          </div>
+          </div> */}
           <div className="itemDetails">
             <div>
               <label htmlFor="">Item Name</label>
               <br />
               <input
                 type="text"
-                placeholder="enter product name"
+                placeholder="Enter Product Name"
                 name="productName"
                 value={productDetail.productName}
                 onChange={handelOnChange}
@@ -136,17 +136,17 @@ function UploadProduct() {
                 onChange={handelOnChange}
               />
               <div>
-                <input
+                <input class="choose_file"
                   type="file"
                   name=""
                   id=""
                   onChange={(e) => setImage(e.target.files[0])}
                 />
                 <br />
-                <button onClick={handelImageUpload}>upload image</button>
+                <button  class ="btn" onClick={handelImageUpload}>Upload Image</button>
               </div>
             </div>
-            <button onClick={handelSubmit}>Submit</button>
+            <button class="submit_btn" onClick={handelSubmit}>Submit</button>
           </div>
         </div>
       </div>

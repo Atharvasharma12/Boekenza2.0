@@ -70,6 +70,7 @@ function UploadProduct() {
       .then((res) => {
         console.log("uploaded to cloudinary");
         // console.log(res.data.secure_url);
+        alert("image uploaded successfully");
         setProductDetail({
           ...productDetail,
           productImageURL: res.data.secure_url,

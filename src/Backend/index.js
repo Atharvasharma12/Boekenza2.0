@@ -1,5 +1,5 @@
 //for seller Registration
-
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -14,16 +14,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
+//mongodb://0.0.0.0:27017/BokenzaDB
 //connection with mongo db
+
 mongoose
-  .connect("mongodb://0.0.0.0:27017/BokenzaDB", {
+  .connect(process.env.MONGO_ATLAS_LINK, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("connected to database"))
   .catch((err) => {
-    console.log("unable to connect to DB  " , err);
+    console.log("unable to connect to DB  ", err);
   });
 
 //>>>>>>>>>>>>>>>>  SECTION FOR AND LOGIN  <<<<<<<<<<+++++++++<<<<<<<<<<<<
@@ -279,6 +280,11 @@ app.post("/verifyotp", (req, res) => {
   });
 });
 
-
 //listen for starting server on port
-app.listen(9191, console.log("port started on 9191"));
+app.listen(
+  process.env.BACKEND_PORT,
+  console.log(`port started on ${process.env.BACKEND_PORT}`)
+);
+
+
+

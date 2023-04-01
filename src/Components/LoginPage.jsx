@@ -77,6 +77,7 @@ function LoginPage() {
               type="password"
               placeholder="Password"
             />
+
             <div className="loginButton">
               {isUser ? (
                 <div className="logoutButton">

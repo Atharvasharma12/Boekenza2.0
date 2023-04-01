@@ -10,7 +10,7 @@ export const userLoginData = createReducer(initialUserLogin, {
   setUerData: (state, action) => {
     state.name = action.payload.name;
     state._id = action.payload._id;
-    console.log(action.payload);
+    // console.log(action.payload);
   },
 });
 

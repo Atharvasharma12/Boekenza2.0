@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginPage() {
-  
   const [isUser, setIsUSer] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
@@ -29,17 +30,54 @@ function LoginPage() {
       axios
         .post("http://localhost:9191/loginpage", userData)
         .then((res) => {
-          alert(res.data.message);
-
+          if (
+            res.data.message == "user mail not found" ||
+            res.data.message == "password not matched"
+          ) {
+            toast.error(`${res.data.message}`, {
+              position: "top-center",
+              autoClose: 1200,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else
+            toast.success(`${res.data.message}`, {
+              position: "top-center",
+              autoClose: 1200,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          console.log(res.data.user);
+          setIsUSer(res.data.user);
           //dispatch to set value using redux
           dispatch({
             type: "setUerData",
             payload: res.data.user,
           });
-          setIsUSer(res.data.user);
+          // console.log(res.data);
         })
-        .catch((err) => alert(err));
-    } else alert("invalid");
+        .catch((err) => {
+          console.log(err);
+        });
+    } else
+      toast.warning("invalid", {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
   };
 
   //for logout it willll empty isUser
@@ -105,6 +143,18 @@ function LoginPage() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

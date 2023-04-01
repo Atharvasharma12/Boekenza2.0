@@ -53,7 +53,7 @@ const middleware = (req, res, next) => {
 
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
+  // console.log(email);
   userModel
     //findOne is query of mongo use to find atleast 1 document and return
     .findOne({ email: email })
@@ -66,10 +66,10 @@ app.post("/LoginPage", (req, res) => {
           res.send({ message: "user login success", user: foundUser });
         } else {
           console.log("password not matched");
-          res.send({ message: "password not matched" });
+          res.send({ message: "password not matched", notFound: "password" });
         }
       } else {
-        res.send({ message: "user mail not found" });
+        res.send({ message: "user mail not found", notFound: "mail" });
         console.log("not found");
       }
     })

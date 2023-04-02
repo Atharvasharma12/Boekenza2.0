@@ -2,9 +2,12 @@ import "./ProductList.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+
+
 function ProductList() {
   const dispatch = useDispatch();
   const [item, setItem] = useState([]);
+
 
   useEffect(() => {
     const gettingData = () => {

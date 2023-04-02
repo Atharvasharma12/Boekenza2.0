@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {BiSearchAlt2 } from "react-icons/bi";
-import {BsCart3} from "react-icons/bs";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import LoginPage from "./LoginPage";
 import Home from "./Home";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -59,35 +61,64 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const { name } = useSelector((state) => state.custom);
+  const [isUser, setIsUSer] = useState(false);
+  const dispatch = useDispatch();
+
+  //for logout it willll empty isUser
+  const handelLogOut = () => {
+    setIsUSer(false);
+    dispatch({
+      type: "setUerData",
+      payload: { name: "profile" },
+    });
+    dispatch({
+      type: "isUser",
+      payload: isUser,
+    });
+  };
+
   return (
-    <Container>
-      <Wrapper>
-        <Left>
-          <SearchContainer>
-            <Input placeholder="Search" />
-            <BiSearchAlt2 style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
-        </Left>
-        <Center>
-          <Link to="/" element={Home}>
-            <Logo>BOEKENZA.</Logo>
-          </Link>
-        </Center>
-        <Right>
-          <Link to="/LoginPage" element={LoginPage}>
-          <div class="scene">
-          <div class="cube">
-          <span class="side top">Sign in</span>
-          <span class="side front">Start Selling</span>
-          </div>
-          </div>
-          </Link>
-          <MenuItem>
-            <BsCart3 style={{ fontSize: 20 }} />
-          </MenuItem>
-        </Right>
-      </Wrapper>
-    </Container>
+    <>
+      <Container>
+        <Wrapper>
+          <Left>
+            <SearchContainer>
+              <Input placeholder="Search" />
+              <BiSearchAlt2 style={{ color: "gray", fontSize: 16 }} />
+            </SearchContainer>
+          </Left>
+          <Center>
+            <Link to="/" element={Home}>
+              <Logo>BOEKENZA.</Logo>
+            </Link>
+          </Center>
+          <Right>
+            <Link to="/LoginPage" element={LoginPage}>
+              <div class="scene">
+                <div class="cube">
+                  <span class="side top">Sign in</span>
+                  <span class="side front">Start Selling</span>
+                </div>
+              </div>
+            </Link>
+
+            <div class="scene">
+              <div class="cube">
+                <span class="side top" onClick={handelLogOut}>
+                  Logout
+                </span>
+                <span class="side front">{name}</span>
+              </div>
+            </div>
+
+            <MenuItem>
+              <BsCart3 style={{ fontSize: 20 }} />
+            </MenuItem>
+          </Right>
+        </Wrapper>
+      </Container>
+    </>
   );
 };
 

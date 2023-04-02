@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,12 +55,17 @@ function LoginPage() {
               progress: undefined,
               theme: "light",
             });
-          console.log(res.data.user);
+          // console.log(res.data.user);
           setIsUSer(res.data.user);
           //dispatch to set value using redux
           dispatch({
             type: "setUerData",
             payload: res.data.user,
+          });
+          //sending value for logout and login used in navbar
+          dispatch({
+            type: "isUser",
+            payload: true,
           });
           // console.log(res.data);
         })
@@ -80,10 +85,14 @@ function LoginPage() {
       });
   };
 
+  //getting info of user of showing upload option
+  const { isPresent } = useSelector((state) => state.custom);
+  // console.log(isPresent);
+
   //for logout it willll empty isUser
-  const handelLogOut = () => {
-    setIsUSer(false);
-  };
+  // const handelLogOut = () => {
+  //   setIsUSer(isPresent);
+  // };
 
   //selector to use values from reducres
   // const { name } = useSelector((state) => state.custom);
@@ -117,13 +126,14 @@ function LoginPage() {
             />
 
             <div className="loginButton">
-              {isUser ? (
+              {isPresent ? (
                 <div className="logoutButton">
                   <br />
-                  <button onClick={handelLogOut}>Logout</button>
 
                   <p>
-                    <Link to="UploadProduct">Want to upload your product </Link>
+                    <Link to="UploadProduct">
+                      <button>Want to upload your product</button>
+                    </Link>
                   </p>
                 </div>
               ) : (

@@ -2,17 +2,27 @@ import { createReducer } from "@reduxjs/toolkit";
 
 //
 const initialUserLogin = {
-  name: "logged in user",
+  name: "Profile",
   _id: "logged in user id",
 };
+// const initialIsUser = {
+//   isPresent: false,
+// };
 
-export const userLoginData = createReducer(initialUserLogin, {
-  setUerData: (state, action) => {
-    state.name = action.payload.name;
-    state._id = action.payload._id;
-    // console.log(action.payload);
-  },
-});
+export const userLoginData = createReducer(
+  { name: "Profile", _id: "logged in user id", isPresent: false },
+  {
+    setUerData: (state, action) => {
+      state.name = action.payload.name;
+      state._id = action.payload._id;
+      // console.log(initialUserLogin.name);
+    },
+    isUser: (state, action) => {
+      state.isPresent = action.payload;
+      // console.log(action.payload);
+    },
+  }
+);
 
 //product details
 const initialProductDetails = {

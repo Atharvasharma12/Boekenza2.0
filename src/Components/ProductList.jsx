@@ -1,14 +1,14 @@
 import "./ProductList.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductList() {
   const dispatch = useDispatch();
   const [item, setItem] = useState([]);
+  const { productNameForSearch } = useSelector((state) => state.searchProduct1);
 
-
+  // console.log(productNameForSearch);
   useEffect(() => {
     const gettingData = () => {
       axios
@@ -29,17 +29,21 @@ function ProductList() {
     <>
       <h1 class="items">Items</h1>
       <div className="mainProductsDiv">
-        {item.map((element, id) => {
-          return (
-            <div key={id} className="productDiv">
-              <img src={element.productImageURL} alt="img" />
-              <h2>{element.productName}</h2>
-              <p>{element.productDiscription}</p>
-              <h6>{element.productPrice}/-</h6>
-              <button class="add_to_cart">Add to Cart</button>
-            </div>
-          );
-        })}
+        {item
+          .filter((element) =>
+            element.productName.toLowerCase().includes(productNameForSearch)
+          )
+          .map((element, id) => {
+            return (
+              <div key={id} className="productDiv">
+                <img src={element.productImageURL} alt="img" />
+                <h2>{element.productName}</h2>
+                <p>{element.productDiscription}</p>
+                <h6>{element.productPrice}/-</h6>
+                <button class="add_to_cart">Add to Cart</button>
+              </div>
+            );
+          })}
       </div>
     </>
   );

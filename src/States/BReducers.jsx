@@ -52,3 +52,13 @@ export const productList = createReducer(initialProductList, {
     state.products = action.payload;
   },
 });
+
+const initialSearch = {
+  productNameForSearch: "",
+};
+
+export const searchProduct = createReducer(initialSearch, {
+  setSearchProduct: (state, action) => {
+    state.productNameForSearch = action.payload;
+  },
+});

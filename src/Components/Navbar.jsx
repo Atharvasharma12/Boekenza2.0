@@ -65,6 +65,14 @@ const Navbar = () => {
   const [isUser, setIsUSer] = useState(false);
   const dispatch = useDispatch();
 
+  const handelSearch = (e) => {
+    dispatch({
+      type: "setSearchProduct",
+      payload: e.target.value,
+    });
+    // console.log(e.target.value);
+  };
+
   //for logout it willll empty isUser
   const handelLogOut = () => {
     setIsUSer(false);
@@ -78,13 +86,15 @@ const Navbar = () => {
     });
   };
 
+  const [searchItem, setSearchItem] = useState("");
+
   return (
     <>
       <Container>
         <Wrapper>
           <Left>
             <SearchContainer>
-              <Input placeholder="Search" />
+              <Input placeholder="Search" onChange={(e) => handelSearch(e)} />
               <BiSearchAlt2 style={{ color: "gray", fontSize: 16 }} />
             </SearchContainer>
           </Left>

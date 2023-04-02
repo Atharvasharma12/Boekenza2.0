@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {BiSearchAlt2 } from "react-icons/bi";
 import {BsCart3} from "react-icons/bs";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 import LoginPage from "./LoginPage";
 import Home from "./Home";
 
@@ -74,7 +75,12 @@ const Navbar = () => {
         </Center>
         <Right>
           <Link to="/LoginPage" element={LoginPage}>
-            <MenuItem>SIGN IN</MenuItem>
+          <div class="scene">
+          <div class="cube">
+          <span class="side top">Sign in</span>
+          <span class="side front">Start Selling</span>
+          </div>
+          </div>
           </Link>
           <MenuItem>
             <BsCart3 style={{ fontSize: 20 }} />

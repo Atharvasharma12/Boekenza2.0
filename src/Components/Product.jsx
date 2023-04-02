@@ -2,9 +2,7 @@
   // import { ImSearch } from "react-icons/im";
   // import { FiHeart } from "react-icons/fi";
   import styled from "styled-components";
-  import Cart from "./Cart"
-  import { Link } from "react-router-dom";
-
+  
   
   const Info = styled.div`
     opacity: 0;

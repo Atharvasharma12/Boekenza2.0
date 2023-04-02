@@ -1,5 +1,5 @@
 //for seller Registration
-
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -14,16 +14,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
+//mongodb://0.0.0.0:27017/BokenzaDB
 //connection with mongo db
+
 mongoose
-  .connect("mongodb://0.0.0.0:27017/BokenzaDB", {
+  .connect(process.env.MONGO_ATLAS_LINK, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("connected to database"))
   .catch((err) => {
-    console.log("unable to connect to DB  " , err);
+    console.log("unable to connect to DB  ", err);
   });
 
 //>>>>>>>>>>>>>>>>  SECTION FOR AND LOGIN  <<<<<<<<<<+++++++++<<<<<<<<<<<<
@@ -52,7 +53,7 @@ const middleware = (req, res, next) => {
 
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
+  // console.log(email);
   userModel
     //findOne is query of mongo use to find atleast 1 document and return
     .findOne({ email: email })
@@ -65,10 +66,10 @@ app.post("/LoginPage", (req, res) => {
           res.send({ message: "user login success", user: foundUser });
         } else {
           console.log("password not matched");
-          res.send({ message: "password not matched" });
+          res.send({ message: "password not matched", notFound: "password" });
         }
       } else {
-        res.send({ message: "user mail not found" });
+        res.send({ message: "user mail not found", notFound: "mail" });
         console.log("not found");
       }
     })
@@ -134,6 +135,7 @@ const productSchema = mongoose.Schema({
   productCategory: "string",
   productDiscription: "string",
   productPrice: "string",
+  productImageURL: "string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
@@ -142,8 +144,13 @@ app.post("/UploadProduct", (req, res) => {
   console.log(req.body);
 
   //fetching data from the data sent by link from uploadproduct page
-  const { productName, productCategory, productDiscription, productPrice } =
-    req.body;
+  const {
+    productName,
+    productCategory,
+    productDiscription,
+    productPrice,
+    productImageURL,
+  } = req.body;
 
   let newProduct = new productModel({
     //here LHS is for schema and RHS for giving data from user
@@ -151,6 +158,7 @@ app.post("/UploadProduct", (req, res) => {
     productCategory: productCategory,
     productDiscription: productDiscription,
     productPrice: productPrice,
+    productImageURL: productImageURL,
   });
 
   newProduct
@@ -272,6 +280,11 @@ app.post("/verifyotp", (req, res) => {
   });
 });
 
-
 //listen for starting server on port
-app.listen(9191, console.log("port started on 9191"));
+app.listen(
+  process.env.BACKEND_PORT,
+  console.log(`port started on ${process.env.BACKEND_PORT}`)
+);
+
+
+

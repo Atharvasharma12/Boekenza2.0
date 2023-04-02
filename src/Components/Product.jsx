@@ -1,6 +1,6 @@
-  import { CgShoppingCart } from "react-icons/cg";
-  import { ImSearch } from "react-icons/im";
-  import { FiHeart } from "react-icons/fi";
+  // import { CgShoppingCart } from "react-icons/cg";
+  // import { ImSearch } from "react-icons/im";
+  // import { FiHeart } from "react-icons/fi";
   import styled from "styled-components";
   import Cart from "./Cart"
   import { Link } from "react-router-dom";
@@ -72,7 +72,7 @@
         <Circle />
         <Image src={item.img} />
         <Info>
-          <Icon>
+          {/* <Icon>
             <Link to="/Cart" element={Cart}>
             <CgShoppingCart />
             </Link>
@@ -83,7 +83,7 @@
           </Icon>
           <Icon>
             <FiHeart />
-          </Icon>
+          </Icon> */}
         </Info>
       </Container>
     );

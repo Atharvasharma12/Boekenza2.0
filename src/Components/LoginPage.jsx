@@ -91,7 +91,7 @@ function LoginPage() {
   return (
     <>
       {/* {isUser && isUser._id ? <h1>hello {name} </h1> : <h1>welcome</h1>} */}
-
+      
       <div className="LoginFullPage">
         <div className="loginMain">
           <div className="loginBoxHeading">
@@ -160,3 +160,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+
+

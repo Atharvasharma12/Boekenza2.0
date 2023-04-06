@@ -10,6 +10,14 @@ function RegisterPage() {
     confirmPassword: "",
     otp: "",
   });
+    
+
+  const [modal, setModal] = useState(false);
+  
+    const toggleModal = () => {
+      setModal(!modal);
+    };
+
 
   //this function save data which is stored in placeholder
   const handelChange = (data) => {
@@ -21,6 +29,8 @@ function RegisterPage() {
       [name]: value, //[key] : value   here name and value will change accordingly with input tags
     });
   };
+
+  
 
   const [showOtp, setShowOtp] = useState(false);
   // const handelOtp = () => {
@@ -77,6 +87,8 @@ function RegisterPage() {
       .catch((err) => console.log(err));
   };
 
+
+ 
   return (
     <>
       <div className="lolo">
@@ -91,7 +103,7 @@ function RegisterPage() {
               value={userData.name}
               name="name"
               type="text"
-              placeholder="Enter your beutiful name"
+              placeholder="Enter your name"
               onChange={handelChange}
             />
             <br />
@@ -100,7 +112,7 @@ function RegisterPage() {
               value={userData.email}
               name="email"
               type="text"
-              placeholder="Enter your gmail"
+              placeholder="Enter your mail id"
               onChange={handelChange}
             />
             <br />
@@ -121,10 +133,38 @@ function RegisterPage() {
               placeholder="Enter again your Password"
               onChange={handelChange}
             />
-            <div className="registerButton">
-              <button onClick={generateOTP}>Proceed</button>
-            </div>
+            
+                    
 
+            <div className="registerButton">
+              <button onClick={toggleModal}>Buy Membership plan</button>
+            </div>
+  
+        {modal && (
+          <div className="modal">
+            <div onClick={toggleModal} className="overlay"></div>
+            <div className="modal-content">
+              <h2>Welcome to our membership plan for selling books on our application. We have designed a special membership plan to make selling books easier and more affordable for our sellers.</h2>
+              <p>
+              Under this membership plan, sellers can sell their books for a period of 10 days by paying a nominal fee of just Rs. 10. This means that you can list as many books as you want on our platform and sell them to potential buyers within 10 days.
+              <br />
+              <br/>
+              The membership plan is a great opportunity for sellers who want to make quick sales without spending too much money on advertising or listing fees. By paying just Rs. 10, you can get your books in front of our large audience of book lovers, who are always looking for new books to read.
+              <br />
+              <br/>
+              So if you're a book seller who wants to sell your books quickly and affordably, then our membership plan is perfect for you. Sign up now and start selling your books on our application today!
+              </p>
+              <br/>
+              <br/>
+              <button onClick={generateOTP} >Buy</button>
+              <button className="close-modal" onClick={toggleModal}>
+              CLOSE
+            </button>
+          </div>
+        </div>
+      )}
+
+            
             {showOtp ? (
               <>
                 <div className="enterOTPMainBox">
@@ -137,9 +177,9 @@ function RegisterPage() {
                     type="text"
                     placeholder="OTP"
                   />
-                  <span>An otp sent to your mail id</span>
+                  <span>An otp is sent to your mail id</span>
                   <button onClick={verifyotp}>Verify</button>
-                  <button onClick={generateOTP}>resend otp</button>
+                  <button onClick={generateOTP}>Resend otp</button>
                 </div>
               </>
             ) : (
@@ -151,5 +191,6 @@ function RegisterPage() {
     </>
   );
 }
+
 
 export default RegisterPage;

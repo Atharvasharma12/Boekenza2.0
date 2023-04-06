@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
+  position: relative;
 `;
 
 const Wrapper = styled.div`

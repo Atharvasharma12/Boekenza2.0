@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import "./Slider.css";
+
 import { useState } from "react";
 import { sliderItems } from "../data";
 import { Link } from "react-router-dom";
@@ -11,7 +13,10 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-  padding-top: 20px;
+
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+  }
 `;
 
 const Arrow = styled.div`
@@ -31,10 +36,12 @@ const Arrow = styled.div`
   right: ${(props) => props.direction === "right" && "10px"};
   z-index: 2;
   opacity: 0.5;
+  @media (max-width: 600px) {
+  }
 `;
 
 const Wrapper = styled.div`
-  height: 100%;
+  height: 50%;
   display: flex;
   transition: all 1.5s ease;
   transform: translateX(${(props) => props.slideIndex * -100}vw);
@@ -46,6 +53,9 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
+  @media (max-width: 600px) {
+    height: 50vh;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -54,16 +64,21 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 80%;
+  height: 100%;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 50px;
+  @media (max-width: 600px) {
+  }
 `;
 
 const Title = styled.h1`
   font-size: 70px;
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+  }
 `;
 
 const Desc = styled.p`
@@ -71,6 +86,10 @@ const Desc = styled.p`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+    margin: 10px 0px;
+  }
 `;
 
 const Button = styled.button`
@@ -78,7 +97,11 @@ const Button = styled.button`
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+  }
 `;
+
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);

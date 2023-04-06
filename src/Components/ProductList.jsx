@@ -25,9 +25,14 @@ function ProductList() {
     gettingData();
   }, [dispatch]);
 
+  const handelIAmIntersted = (selectedProduct) => {
+    console.log(selectedProduct);
+  };
+
   return (
     <>
       <h1 class="items">Items</h1>
+
       <div className="mainProductsDiv">
         {item
           .filter((element) =>
@@ -36,11 +41,25 @@ function ProductList() {
           .map((element, id) => {
             return (
               <div key={id} className="productDiv">
-                <img src={element.productImageURL} alt="img" />
-                <h2>{element.productName}</h2>
-                <p>{element.productDiscription}</p>
-                <h6>{element.productPrice}/-</h6>
-                <button class="add_to_cart">Add to Cart</button>
+                <div className="imageDiv">
+                  <img src={element.productImageURL} alt="img" />
+                </div>
+                <div>
+                  <span>{element.productCategory}</span>
+                  <div className="ProductNamePrice">
+                    <h2>{element.productName}</h2>
+                    <h6>Rs.{element.productPrice}/-</h6>
+                  </div>
+                  <p>{element.productDiscription}</p>
+                  <div className="InterestedButton">
+                    <button
+                      class="add_to_cart"
+                      onClick={() => handelIAmIntersted(element)}
+                    >
+                      I Am Interested
+                    </button>
+                  </div>
+                </div>
               </div>
             );
           })}

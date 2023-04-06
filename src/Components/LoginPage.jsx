@@ -13,7 +13,7 @@ function LoginPage() {
     email: "",
     password: "",
   });
-
+console.log(isUser);
   const handelChange = (event) => {
     const { name, value } = event.target;
     setUserData({

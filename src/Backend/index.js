@@ -4,12 +4,13 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const sendmail = require("./SendMail");
+const bcrypt = require("bcrypt");
 
 // const sendmail = require("./SendMail");
 
 //creating app
 const app = express();
-
+console.log(bcrypt("hello", 10));
 //for sending res and req we use these
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,6 +50,8 @@ const obg = {
 
 const middleware = (req, res, next) => {
   console.log("middleware");
+
+  next();
 };
 
 app.post("/LoginPage", (req, res) => {
@@ -140,7 +143,11 @@ const productSchema = mongoose.Schema({
 
 const productModel = new mongoose.model("productModel", productSchema);
 
-app.post("/UploadProduct", (req, res) => {
+const uploadMiddelware = (req, res, next) => {
+  console.log(res);
+};
+
+app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   console.log(req.body);
 
   //fetching data from the data sent by link from uploadproduct page

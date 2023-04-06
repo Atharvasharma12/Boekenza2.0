@@ -11,19 +11,32 @@
   margin-right: 15px;
 }
 .mainProductsDiv :hover {
-  background-color: rgb(172, 181, 206);
+  /* background-color: rgb(172, 181, 206); */
+  scale: 103%;
+  transition: .3s;
 }
 .productDiv {
-  width: 20%;
+  width: 240px;
+  padding: 10px 10px;
+  /* background-color: rgb(231, 243, 243); */
+  /* margin-block-end: 30px; */
+  border-radius: 4px;
+  margin: 20px 10px;
+  /* overflow: hidden; */
+  height: 399px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:0px 0px 20px -1px;
+}
 
-  border: 1px solid black;
-  background-color: rgb(231, 243, 243);
-  margin-block-end: 30px;
-  border-radius: 2px;
+.imageDiv {
+  /* width: 100%; */
+  height: 180%;
+  margin: auto 15%;
 }
 
 .productDiv img {
-  width: 100px;
+  width: 60%;
 }
 
 .items {
@@ -40,15 +53,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 100px;
-
-  border: 1px solid black;
+color: white;
   border-radius: 4px;
-  background-color: rgb(128, 194, 241);
+  background-color: teal;
   font-family: "Times New Roman", Times, serif;
   font-size: 15px;
   margin-block-end: 20px;
   cursor: pointer;
+}
+
+.InterestedButton{
+display: flex;
+
+}
+.InterestedButton button{
+  width: 100%;
+  height: 29px;
+  border: none;
+}
+
+.ProductNamePrice{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.ProductNamePrice h6{
+  color: green;
 }
 
 h2 {
@@ -56,13 +89,10 @@ h2 {
    justify-content: center;
    align-items: center; */
   text-transform: uppercase;
-  margin-left: 5px;
-  margin-right: 10px;
   word-wrap: break-word;
 }
 p {
-  margin-left: 5px;
-  margin-right: 5px;
+
   font-size: 15px;
   text-transform: capitalize;
   word-wrap: break-word;
@@ -75,4 +105,10 @@ h6 {
   align-items: center;
   font-size: 15px;
   /* margin-top: px; */
+}
+
+.productDiv span{
+  color: mediumblue;
+  text-transform: capitalize;
+
 }

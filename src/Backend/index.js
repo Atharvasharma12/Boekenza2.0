@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 
 //creating app
 const app = express();
-console.log(bcrypt("hello", 10));
+// console.log(bcrypt("hello", 10));
 //for sending res and req we use these
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -139,16 +139,25 @@ const productSchema = mongoose.Schema({
   productDiscription: "string",
   productPrice: "string",
   productImageURL: "string",
+  SellerName:"string",
+  SellerEmailID:"string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
 
 const uploadMiddelware = (req, res, next) => {
-  console.log(res);
+  console.log(req.body)
+  //to check if user is present or not
+  if (req.body.name && req.body.email){
+    // res.send({message : "user is logged in"})
+    next()
+  }else{
+    res.send({message:"user is not logged in"})
+  }
 };
 
-app.post("/UploadProduct", uploadMiddelware, (req, res) => {
-  console.log(req.body);
+app.post("/UploadProduct",uploadMiddelware,  (req, res) => {
+
 
   //fetching data from the data sent by link from uploadproduct page
   const {
@@ -157,21 +166,26 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
     productDiscription,
     productPrice,
     productImageURL,
-  } = req.body;
-
+  } = req.body.productDetail;
+  const name = req.body.name
+  const email = req.body.email
   let newProduct = new productModel({
-    //here LHS is for schema and RHS for giving data from user
+    //here LHS is for schema and RHS for reciving data from user
     productName: productName,
     productCategory: productCategory,
     productDiscription: productDiscription,
     productPrice: productPrice,
     productImageURL: productImageURL,
+    SellerName : name,
+    SellerEmailID:email,
   });
 
+  
   newProduct
     .save()
     .then((result) => {
       console.log("sent");
+
       res.send({ message: "uploaded successfuly" });
     })
     .catch((err) => console.log(err));

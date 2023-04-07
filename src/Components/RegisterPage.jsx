@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./RegisterPage.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function RegisterPage() {
   const [userData, setUserData] = useState({
     name: "",
@@ -10,14 +13,12 @@ function RegisterPage() {
     confirmPassword: "",
     otp: "",
   });
-    
 
   const [modal, setModal] = useState(false);
-  
-    const toggleModal = () => {
-      setModal(!modal);
-    };
 
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   //this function save data which is stored in placeholder
   const handelChange = (data) => {
@@ -29,8 +30,6 @@ function RegisterPage() {
       [name]: value, //[key] : value   here name and value will change accordingly with input tags
     });
   };
-
-  
 
   const [showOtp, setShowOtp] = useState(false);
   // const handelOtp = () => {
@@ -67,7 +66,17 @@ function RegisterPage() {
         .post("http://localhost:9191/generateotp", userData)
         .then((res) => {
           console.log(res);
-          alert(res.data.message);
+          // alert(res.data.message);
+          toast.success("otp sent", {
+            position: "top-center",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
           console.log(res.data.isPresent);
           res.data.isPresent ? setShowOtp(false) : setShowOtp(true);
         })
@@ -83,12 +92,20 @@ function RegisterPage() {
       .then((res) => {
         console.log(res);
         alert(res.data.message);
+        toast.success("otp sent", {
+          position: "top-center",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((err) => console.log(err));
   };
 
-
- 
   return (
     <>
       <div className="lolo">
@@ -133,38 +150,58 @@ function RegisterPage() {
               placeholder="Enter again your Password"
               onChange={handelChange}
             />
-            
-                    
 
             <div className="registerButton">
               <button onClick={toggleModal}>Buy Membership plan</button>
             </div>
-  
-        {modal && (
-          <div className="modal">
-            <div onClick={toggleModal} className="overlay"></div>
-            <div className="modal-content">
-              <h2>Welcome to our membership plan for selling books on our application. We have designed a special membership plan to make selling books easier and more affordable for our sellers.</h2>
-              <p>
-              Under this membership plan, sellers can sell their books for a period of 10 days by paying a nominal fee of just Rs. 10. This means that you can list as many books as you want on our platform and sell them to potential buyers within 10 days.
-              <br />
-              <br/>
-              The membership plan is a great opportunity for sellers who want to make quick sales without spending too much money on advertising or listing fees. By paying just Rs. 10, you can get your books in front of our large audience of book lovers, who are always looking for new books to read.
-              <br />
-              <br/>
-              So if you're a book seller who wants to sell your books quickly and affordably, then our membership plan is perfect for you. Sign up now and start selling your books on our application today!
-              </p>
-              <br/>
-              <br/>
-              <button onClick={generateOTP} >Buy</button>
-              <button className="close-modal" onClick={toggleModal}>
-              CLOSE
-            </button>
-          </div>
-        </div>
-      )}
 
-            
+            {modal && (
+              <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                  <h2>
+                    Welcome to our membership plan for selling books on our
+                    application. We have designed a special membership plan to
+                    make selling books easier and more affordable for our
+                    sellers.
+                  </h2>
+                  <p>
+                    Under this membership plan, sellers can sell their books for
+                    a period of 10 days by paying a nominal fee of just Rs. 10.
+                    This means that you can list as many books as you want on
+                    our platform and sell them to potential buyers within 10
+                    days.
+                    <br />
+                    <br />
+                    The membership plan is a great opportunity for sellers who
+                    want to make quick sales without spending too much money on
+                    advertising or listing fees. By paying just Rs. 10, you can
+                    get your books in front of our large audience of book
+                    lovers, who are always looking for new books to read.
+                    <br />
+                    <br />
+                    So if you're a book seller who wants to sell your books
+                    quickly and affordably, then our membership plan is perfect
+                    for you. Sign up now and start selling your books on our
+                    application today!
+                  </p>
+                  <br />
+                  <br />
+                  <button
+                    onClick={() => {
+                      toggleModal();
+                      generateOTP();
+                    }}
+                  >
+                    Buy
+                  </button>
+                  <button className="close-modal" onClick={toggleModal}>
+                    CLOSE
+                  </button>
+                </div>
+              </div>
+            )}
+
             {showOtp ? (
               <>
                 <div className="enterOTPMainBox">
@@ -188,6 +225,18 @@ function RegisterPage() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

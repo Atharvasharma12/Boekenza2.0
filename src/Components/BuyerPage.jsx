@@ -1,7 +1,7 @@
 import React from "react";
 
 function BuyerPage() {
-  return <div>BuyerPage</div>;
+  return <h1>byuer page</h1>;
 }
 
 export default BuyerPage;

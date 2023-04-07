@@ -9,17 +9,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 function UploadProduct() {
   //selecting name of logged in user from reducer
-  const { name } = useSelector((state) => state.custom);
+  const { name, email } = useSelector((state) => state.custom);
 
   //useDispatch for insert value using dispatcher
   const dispatch = useDispatch();
-
+  console.log(email);
   const [productDetail, setProductDetail] = useState({
     productName: "",
     productCategory: "",
     productDiscription: "",
     productPrice: "",
     productImageURL: "",
+    SellerName: name,
+    SellerEmailID: email,
   });
 
   const [image, setImage] = useState();
@@ -56,7 +58,11 @@ function UploadProduct() {
     ) {
       //sending product detail to backendend using axios
       axios
-        .post("http://localhost:9191/UploadProduct", productDetail)
+        .post("http://localhost:9191/UploadProduct", {
+          productDetail,
+          name,
+          email,
+        })
         .then((res) => {
           console.log(res);
           // alert(res.data.message);

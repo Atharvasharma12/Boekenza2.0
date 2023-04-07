@@ -13,7 +13,7 @@ function LoginPage() {
     email: "",
     password: "",
   });
-console.log(isUser);
+  console.log(isUser);
   const handelChange = (event) => {
     const { name, value } = event.target;
     setUserData({
@@ -100,7 +100,7 @@ console.log(isUser);
   return (
     <>
       {/* {isUser && isUser._id ? <h1>hello {name} </h1> : <h1>welcome</h1>} */}
-      
+
       <div className="LoginFullPage">
         <div className="loginMain">
           <div className="loginBoxHeading">

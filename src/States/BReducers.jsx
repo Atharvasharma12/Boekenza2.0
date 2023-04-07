@@ -3,7 +3,8 @@ import { createReducer } from "@reduxjs/toolkit";
 //
 const initialUserLogin = {
   name: "Profile",
-  _id: "logged in user id",
+  email: "",
+  _id: "",
 };
 // const initialIsUser = {
 //   isPresent: false,
@@ -14,12 +15,13 @@ export const userLoginData = createReducer(
   {
     setUerData: (state, action) => {
       state.name = action.payload.name;
+      state.email = action.payload.email;
       state._id = action.payload._id;
       // console.log(initialUserLogin.name);
+      // console.log(action.payload);
     },
     isUser: (state, action) => {
       state.isPresent = action.payload;
-      // console.log(action.payload);
     },
   }
 );

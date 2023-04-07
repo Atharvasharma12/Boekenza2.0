@@ -2,6 +2,8 @@ import "./ProductList.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import BuyerPage from "./BuyerPage";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -51,14 +53,16 @@ function ProductList() {
                     <h6>Rs.{element.productPrice}/-</h6>
                   </div>
                   <p>{element.productDiscription}</p>
-                  <div className="InterestedButton">
-                    <button
-                      class="add_to_cart"
-                      onClick={() => handelIAmIntersted(element)}
-                    >
-                      I Am Interested
-                    </button>
-                  </div>
+                  <Link to="/BuyerPage" element={<BuyerPage />}>
+                    <div className="InterestedButton">
+                      <button
+                        class="add_to_cart"
+                        onClick={() => handelIAmIntersted(element)}
+                      >
+                        I Am Interested
+                      </button>
+                    </div>
+                  </Link>
                 </div>
               </div>
             );

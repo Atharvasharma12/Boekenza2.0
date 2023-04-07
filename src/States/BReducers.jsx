@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 //
-const initialUserLogin = {
-  name: "Profile",
-  email: "",
-  _id: "",
-};
+// const initialUserLogin = {
+//   name: "Profile",
+//   email: "",
+//   _id: "",
+// };
 // const initialIsUser = {
 //   isPresent: false,
 // };
@@ -64,3 +64,23 @@ export const searchProduct = createReducer(initialSearch, {
     state.productNameForSearch = action.payload;
   },
 });
+
+//product details that buyer selected from the list of product
+const initialSelectedProduct = {
+  productName: "",
+  productCategory: "",
+  productDiscription: "",
+  productPrice: "",
+  productImageURL: "",
+  
+}
+export const interestedProduct = createReducer(initialSelectedProduct,{
+  setSeletedProduct:(state , action)=>{
+    state.productName = action.payload.productName;
+    state.productCategory = action.payload.productCategory;
+    state.productDiscription = action.payload.productDiscription;
+    state.productPrice = action.payload.productPrice;
+    state.productImageURL = action.payload.productImageURL;
+    
+  }
+})

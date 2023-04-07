@@ -29,6 +29,10 @@ function ProductList() {
 
   const handelIAmIntersted = (selectedProduct) => {
     console.log(selectedProduct);
+    dispatch({
+      type: "setSeletedProduct",
+      payload: selectedProduct,
+    });
   };
 
   return (

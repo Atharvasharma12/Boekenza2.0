@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 const Container = styled.div`
   height: 60px;
   position: relative;
+  margin-bottom: 100px;
 `;
 
 const Wrapper = styled.div`
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const Left = styled.div`

@@ -54,7 +54,7 @@ const Slide = styled.div`
   align-items: center;
   background-color: #${(props) => props.bg};
   @media (max-width: 600px) {
-    height: 50vh;
+    height: 30vh;
   }
 `;
 

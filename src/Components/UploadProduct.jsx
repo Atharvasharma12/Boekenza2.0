@@ -20,6 +20,7 @@ function UploadProduct() {
     productDiscription: "",
     productPrice: "",
     productImageURL: "",
+    productId: "",
     SellerName: name,
     SellerEmailID: email,
   });
@@ -33,7 +34,7 @@ function UploadProduct() {
       [name]: value,
     });
   };
-  console.log(productDetail);
+  // console.log(productDetail);
 
   const handelSubmit = () => {
     dispatch({
@@ -64,7 +65,7 @@ function UploadProduct() {
           email,
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data.productId);
           // alert(res.data.message);
           toast.success(`${res.data.message}`, {
             position: "top-center",
@@ -92,7 +93,7 @@ function UploadProduct() {
       });
     }
 
-    console.log(productDetail);
+    // console.log(productDetail);
   };
 
   const handelImageUpload = () => {

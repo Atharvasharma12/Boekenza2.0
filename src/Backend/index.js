@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const sendmail = require("./SendMail");
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
 
 // const sendmail = require("./SendMail");
 
@@ -139,26 +140,24 @@ const productSchema = mongoose.Schema({
   productDiscription: "string",
   productPrice: "string",
   productImageURL: "string",
-  SellerName:"string",
-  SellerEmailID:"string",
+  SellerName: "string",
+  SellerEmailID: "string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
 
 const uploadMiddelware = (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   //to check if user is present or not
-  if (req.body.name && req.body.email){
+  if (req.body.name && req.body.email) {
     // res.send({message : "user is logged in"})
-    next()
-  }else{
-    res.send({message:"user is not logged in"})
+    next();
+  } else {
+    res.send({ message: "user is not logged in" });
   }
 };
 
-app.post("/UploadProduct",uploadMiddelware,  (req, res) => {
-
-
+app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   //fetching data from the data sent by link from uploadproduct page
   const {
     productName,
@@ -167,8 +166,8 @@ app.post("/UploadProduct",uploadMiddelware,  (req, res) => {
     productPrice,
     productImageURL,
   } = req.body.productDetail;
-  const name = req.body.name
-  const email = req.body.email
+  const name = req.body.name;
+  const email = req.body.email;
   let newProduct = new productModel({
     //here LHS is for schema and RHS for reciving data from user
     productName: productName,
@@ -176,17 +175,16 @@ app.post("/UploadProduct",uploadMiddelware,  (req, res) => {
     productDiscription: productDiscription,
     productPrice: productPrice,
     productImageURL: productImageURL,
-    SellerName : name,
-    SellerEmailID:email,
+    SellerName: name,
+    SellerEmailID: email,
   });
 
-  
   newProduct
     .save()
     .then((result) => {
       console.log("sent");
 
-      res.send({ message: "uploaded successfuly" });
+      res.send({ message: "uploaded successfuly", productId: result._id });
     })
     .catch((err) => console.log(err));
 });
@@ -248,7 +246,7 @@ app.post("/generateotp", (req, res) => {
     otp: newotp,
     email: req.body.email,
   };
-  // sendmail(toSendMail);
+  sendmail(toSendMail);
 
   //creating new instance each time for new user
   const newObj = new otpModel({
@@ -301,10 +299,80 @@ app.post("/verifyotp", (req, res) => {
   });
 });
 
+//>>>>>>>>>>>>>>>>>>>> SECTION FOR BYUER <<<<<<<<<<<<<<<<<<<<
+
+//middleware will check whether user is login
+const buyerPageMiddleware = (req, res, next) => {
+  const { name, email, _id, isPresent } = req.body;
+
+  if (name && email && _id && isPresent == true) {
+    next();
+  } else {
+    console.log("user is not present and cannot buy product");
+    res.send({ message: "user not logged in" });
+  }
+};
+
+app.post("/buyerPage", buyerPageMiddleware, (req, res) => {
+  console.log(req.body);
+  const { name, email, _id, isPresent } = req.body;
+
+  const {
+    productName,
+    productCategory,
+    productDiscription,
+    productPrice,
+    productImageURL,
+  } = req.body.buyersProduct;
+
+  productModel.findOne({ productImageURL: productImageURL }).then((found) => {
+    if (found) {
+      console.log(found);
+      const SellerEmailID = found.SellerEmailID;
+
+      //searching for product in backend and seeking information about the seller from product information
+
+      async function sendmail(data) {
+        let testAccount = await nodemailer.createTestAccount();
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          host: "smtp.gmail.com",
+          // port: 587,
+          auth: {
+            user: process.env.USER_NAME,
+            pass: process.env.PASSWORD,
+          },
+        });
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+          from: process.env.USER_NAME, // sender address
+          to: `${SellerEmailID}`, // list of receivers
+          subject: "Buyer from Boekenza", // Subject line
+          text: `Hello dear seller, we have found buyer for your product.
+          PRODUCT NAME : ${productName} 
+          CATEGORY :  ${productCategory} 
+          DISCRIPITON : ${productDiscription}
+          PRICE : Rs.${productPrice}/-
+          IMAGE- ${productImageURL}
+
+          Buyer's Information - 
+          Name : ${name}
+          Email : ${email}`, // plain text body
+        });
+
+        console.log("mail send");
+        res.send({ message: "Notification sent to Seller" });
+      }
+
+      sendmail().catch(console.error);
+    }
+  });
+});
+
+
 //listen for starting server on port
 app.listen(
   process.env.BACKEND_PORT,
   console.log(`port started on ${process.env.BACKEND_PORT}`)
 );
-
-

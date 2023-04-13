@@ -67,7 +67,7 @@ function RegisterPage() {
         .then((res) => {
           console.log(res);
           // alert(res.data.message);
-          toast.success("otp sent", {
+          toast.success(res.data.message, {
             position: "top-center",
             autoClose: 1200,
             hideProgressBar: false,
@@ -77,7 +77,7 @@ function RegisterPage() {
             progress: undefined,
             theme: "light",
           });
-          console.log(res.data.isPresent);
+          // console.log(res.data.isPresent);
           res.data.isPresent ? setShowOtp(false) : setShowOtp(true);
         })
         .catch((err) => console.log(err));
@@ -91,8 +91,8 @@ function RegisterPage() {
       .post("http://localhost:9191/verifyotp", userData)
       .then((res) => {
         console.log(res);
-        alert(res.data.message);
-        toast.success("otp sent", {
+        // alert(res.data.message);
+        toast.success(res.data.message, {
           position: "top-center",
           autoClose: 1200,
           hideProgressBar: false,

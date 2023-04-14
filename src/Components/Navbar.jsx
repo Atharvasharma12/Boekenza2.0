@@ -103,7 +103,7 @@ const Navbar = () => {
           </Left>
           <Center>
             <Link to="/" element={Home}>
-              <Logo>BOEKENZA.</Logo>
+              <Logo>BOEKENZA</Logo>
             </Link>
           </Center>
           <Right>

@@ -125,7 +125,6 @@
           <ContactItem>
             <AiOutlineMail style={{marginRight:"10px"}} /> boekenza273644@gmail.com
           </ContactItem>
-          <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
         </Right>
       </Container>
     );

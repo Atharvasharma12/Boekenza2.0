@@ -160,29 +160,19 @@ function RegisterPage() {
                 <div onClick={toggleModal} className="overlay"></div>
                 <div className="modal-content">
                   <h2>
-                    Welcome to our membership plan for selling books on our
+                    Welcome to our membership plan for selling items on our
                     application. We have designed a special membership plan to
-                    make selling books easier and more affordable for our
-                    sellers.
+                    make selling easier and more affordable for you.
                   </h2>
                   <p>
-                    Under this membership plan, sellers can sell their books for
+                    Under this membership plan, you can sell your products for
                     a period of 10 days by paying a nominal fee of just Rs. 10.
                     This means that you can list as many books as you want on
                     our platform and sell them to potential buyers within 10
                     days.
                     <br />
                     <br />
-                    The membership plan is a great opportunity for sellers who
-                    want to make quick sales without spending too much money on
-                    advertising or listing fees. By paying just Rs. 10, you can
-                    get your books in front of our large audience of book
-                    lovers, who are always looking for new books to read.
-                    <br />
-                    <br />
-                    So if you're a book seller who wants to sell your books
-                    quickly and affordably, then our membership plan is perfect
-                    for you. Sign up now and start selling your books on our
+                     Sign up now and start selling on our
                     application today!
                   </p>
                   <br />

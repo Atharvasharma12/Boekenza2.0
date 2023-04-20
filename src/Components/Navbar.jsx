@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import LoginPage from "./LoginPage";
@@ -103,7 +102,7 @@ const Navbar = () => {
           </Left>
           <Center>
             <Link to="/" element={Home}>
-              <Logo>BOEKENZA.</Logo>
+              <Logo>BOEKENZA</Logo>
             </Link>
           </Center>
           <Right>
@@ -125,9 +124,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <MenuItem>
-              <BsCart3 style={{ fontSize: 20 }} />
-            </MenuItem>
+           
           </Right>
         </Wrapper>
       </Container>

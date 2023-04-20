@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const sendmail = require("./SendMail");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const { upload } = require("@testing-library/user-event/dist/upload");
 

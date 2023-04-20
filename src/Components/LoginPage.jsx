@@ -3,7 +3,6 @@ import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -135,9 +134,16 @@ function LoginPage() {
                   </Link>
 
                   <p>
-                    <Link to="UploadProduct">
-                      <button>Want to upload your product</button>
+                    Continue as 
+
+                    <Link to="AllProductList">
+                        <button>Buyer</button>
                     </Link>
+                         
+                      <Link to="UploadProduct">
+                      <button>Seller</button>
+                      </Link>
+
                   </p>
                 </div>
               ) : (

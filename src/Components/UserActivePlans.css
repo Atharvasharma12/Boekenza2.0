@@ -1,0 +1,16 @@
+.mainProductDiv{
+    
+    background-color: pink;
+}
+
+.singleProductDiv{
+   display: flex;
+    margin: 10px;
+    border: 1px solid black;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imageDiv img{
+    width: 50px;
+}

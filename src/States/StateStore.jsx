@@ -4,6 +4,8 @@ import {
   productDetails,
   productList,
   searchProduct,
+  interestedProduct,
+  userItems,
 } from "./BReducers";
 
 const store = configureStore({
@@ -12,6 +14,8 @@ const store = configureStore({
     pdetail: productDetails,
     pList: productList,
     searchProduct1: searchProduct,
+    interestedProduct1: interestedProduct,
+    userItems1: userItems,
   },
 });
 

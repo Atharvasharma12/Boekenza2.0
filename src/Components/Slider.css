@@ -1,0 +1,12 @@
+@media screen and (max-width: 601px) {
+    html {
+      font-size: .8em;
+    }
+.Container {
+  /* width: 100%; */
+  height: 50vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;}
+
+  }

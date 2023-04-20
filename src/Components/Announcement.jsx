@@ -10,11 +10,7 @@ const Container = styled.div`
 `;
 
 const Announcement = () => {
-  return (
-    <Container>
-      <h1></h1>
-    </Container>
-  );
+  return <Container>{/* <h1></h1> */}</Container>;
 };
 
 export default Announcement;

@@ -2,6 +2,8 @@ import "./ProductList.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import BuyerPage from "./BuyerPage";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -25,22 +27,64 @@ function ProductList() {
     gettingData();
   }, [dispatch]);
 
+  const handelIAmIntersted = (selectedProduct) => {
+
+    dispatch({
+      type: "setSeletedProduct",
+      payload: selectedProduct,
+    });
+  };
+
+  
+  
   return (
     <>
       <h1 class="items">Items</h1>
+
       <div className="mainProductsDiv">
         {item
-          .filter((element) =>
-            element.productName.toLowerCase().includes(productNameForSearch)
-          )
+
+          .filter((element) => {
+            return (
+              element.productName
+                .toLowerCase()
+                .includes(productNameForSearch) &&
+              element.productCategory
+                .toLowerCase()
+                .includes(productNameForSearch)
+            );
+          })
           .map((element, id) => {
             return (
-              <div key={id} className="productDiv">
-                <img src={element.productImageURL} alt="img" />
-                <h2>{element.productName}</h2>
-                <p>{element.productDiscription}</p>
-                <h6>{element.productPrice}/-</h6>
-                {/* <button class="add_to_cart">Add to Cart</button> */}
+              <div class="product-card">
+                <div class="badge">Hot</div>
+                <div class="product-tumb">
+                  <img src={element.productImageURL} alt="" />
+                </div>
+                <div class="product-details">
+                  <span class="product-catagory">
+                    {element.productCategory}
+                  </span>
+                  <h4>
+                    <a href="">{element.productName}</a>
+                  </h4>
+
+                  <div class="product-bottom-details">
+                    <div class="product-price">Rs.{element.productPrice}/-</div>
+                    <div class="product-links">
+                      <Link to="/BuyerPage" element={<BuyerPage />}>
+                        <div className="InterestedButton">
+                          <button
+                            class="add_to_cart"
+                            onClick={() => handelIAmIntersted(element)}
+                          >
+                            BUY
+                          </button>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}

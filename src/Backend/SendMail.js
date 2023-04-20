@@ -7,7 +7,6 @@ async function sendmail(data) {
 
   console.log("mail send");
   console.log(data.email, data.otp);
-
   let testAccount = await nodemailer.createTestAccount();
 
   // create reusable transporter object using the default SMTP transport
@@ -16,28 +15,32 @@ async function sendmail(data) {
     host: "smtp.gmail.com",
     // port: 587,
     auth: {
-      user: "atharvasharma20260@acropolis.in",
-      pass: "",
+      user: "boekenza@gmail.com",
+      pass: "gkpvarzplcquafax",
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: "atharvasharma20260@acropolis.in", // sender address
+    from: "boekenza@gmail.com", // sender address
     to: `${data.email}`, // list of receivers
     subject: "Registration verification", // Subject line
     text: `otp for verification is ${data.otp}`, // plain text body
     // html: "<b> otp for verification is {otp} </b>", // html body
   });
 
-  console.log("Message sent: %s", info.messageId);
+  // console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
   // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
 
 sendmail().catch(console.error);
 
 module.exports = sendmail;
+
+
+
+

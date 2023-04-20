@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./RegisterPage.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function RegisterPage() {
   const [userData, setUserData] = useState({
     name: "",
@@ -10,6 +13,12 @@ function RegisterPage() {
     confirmPassword: "",
     otp: "",
   });
+
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   //this function save data which is stored in placeholder
   const handelChange = (data) => {
@@ -57,8 +66,18 @@ function RegisterPage() {
         .post("http://localhost:9191/generateotp", userData)
         .then((res) => {
           console.log(res);
-          alert(res.data.message);
-          console.log(res.data.isPresent);
+          // alert(res.data.message);
+          toast.success(res.data.message, {
+            position: "top-center",
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          // console.log(res.data.isPresent);
           res.data.isPresent ? setShowOtp(false) : setShowOtp(true);
         })
         .catch((err) => console.log(err));
@@ -72,7 +91,17 @@ function RegisterPage() {
       .post("http://localhost:9191/verifyotp", userData)
       .then((res) => {
         console.log(res);
-        alert(res.data.message);
+        // alert(res.data.message);
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -91,7 +120,7 @@ function RegisterPage() {
               value={userData.name}
               name="name"
               type="text"
-              placeholder="Enter your beutiful name"
+              placeholder="Enter your name"
               onChange={handelChange}
             />
             <br />
@@ -100,7 +129,7 @@ function RegisterPage() {
               value={userData.email}
               name="email"
               type="text"
-              placeholder="Enter your gmail"
+              placeholder="Enter your mail id"
               onChange={handelChange}
             />
             <br />
@@ -121,9 +150,47 @@ function RegisterPage() {
               placeholder="Enter again your Password"
               onChange={handelChange}
             />
+
             <div className="registerButton">
-              <button onClick={generateOTP}>Proceed</button>
+              <button onClick={toggleModal}>Buy Membership plan</button>
             </div>
+
+            {modal && (
+              <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                  <h2>
+                    Welcome to our membership plan for selling items on our
+                    application. We have designed a special membership plan to
+                    make selling easier and more affordable for you.
+                  </h2>
+                  <p>
+                    Under this membership plan, you can sell your products for
+                    a period of 10 days by paying a nominal fee of just Rs. 10.
+                    This means that you can list as many books as you want on
+                    our platform and sell them to potential buyers within 10
+                    days.
+                    <br />
+                    <br />
+                     Sign up now and start selling on our
+                    application today!
+                  </p>
+                  <br />
+                  <br />
+                  <button
+                    onClick={() => {
+                      toggleModal();
+                      generateOTP();
+                    }}
+                  >
+                    Buy
+                  </button>
+                  <button className="close-modal" onClick={toggleModal}>
+                    CLOSE
+                  </button>
+                </div>
+              </div>
+            )}
 
             {showOtp ? (
               <>
@@ -137,9 +204,9 @@ function RegisterPage() {
                     type="text"
                     placeholder="OTP"
                   />
-                  <span>An otp sent to your mail id</span>
+                  <span>An otp is sent to your mail id</span>
                   <button onClick={verifyotp}>Verify</button>
-                  <button onClick={generateOTP}>resend otp</button>
+                  <button onClick={generateOTP}>Resend otp</button>
                 </div>
               </>
             ) : (
@@ -148,8 +215,21 @@ function RegisterPage() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }
+
 
 export default RegisterPage;

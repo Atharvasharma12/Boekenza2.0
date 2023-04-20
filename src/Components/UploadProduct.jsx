@@ -10,17 +10,20 @@ import "react-toastify/dist/ReactToastify.css";
 
 function UploadProduct() {
   //selecting name of logged in user from reducer
-  const { name } = useSelector((state) => state.custom);
+  const { name, email } = useSelector((state) => state.custom);
 
   //useDispatch for insert value using dispatcher
   const dispatch = useDispatch();
-
+  // console.log(email);
   const [productDetail, setProductDetail] = useState({
     productName: "",
     productCategory: "",
     productDiscription: "",
     productPrice: "",
     productImageURL: "",
+    productId: "",
+    SellerName: name,
+    SellerEmailID: email,
   });
 
   const [image, setImage] = useState();
@@ -32,7 +35,7 @@ function UploadProduct() {
       [name]: value,
     });
   };
-  console.log(productDetail);
+  // console.log(productDetail);
 
   const handelSubmit = () => {
     dispatch({
@@ -57,9 +60,13 @@ function UploadProduct() {
     ) {
       //sending product detail to backendend using axios
       axios
-        .post("http://localhost:9191/UploadProduct", productDetail)
+        .post("http://localhost:9191/UploadProduct", {
+          productDetail,
+          name,
+          email,
+        })
         .then((res) => {
-          console.log(res);
+          // console.log(res.data.productId);
           // alert(res.data.message);
           toast.success(`${res.data.message}`, {
             position: "top-center",
@@ -88,7 +95,7 @@ function UploadProduct() {
       });
     }
 
-    console.log(productDetail);
+    // console.log(productDetail);
   };
 
   const handelImageUpload = () => {
@@ -102,14 +109,14 @@ function UploadProduct() {
       .then((res) => {
         //do something else
         toast.update(id, {
-          render: "All is good",
+          render: "Image Uploaded",
           type: "success",
           isLoading: false,
           autoClose: 3000,
           hideProgressBar: false,
           closeButton: true,
         });
-        console.log(res.status);
+        // console.log(res.status);
         console.log("uploaded to cloudinary");
         // console.log(res.data.secure_url);
         // alert("image uploaded successfully");

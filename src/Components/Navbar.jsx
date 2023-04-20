@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import LoginPage from "./LoginPage";
@@ -11,6 +10,8 @@ import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
+  position: relative;
+  margin-bottom: 100px;
 `;
 
 const Wrapper = styled.div`
@@ -18,6 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const Left = styled.div`
@@ -100,7 +102,7 @@ const Navbar = () => {
           </Left>
           <Center>
             <Link to="/" element={Home}>
-              <Logo>BOEKENZA.</Logo>
+              <Logo>BOEKENZA</Logo>
             </Link>
           </Center>
           <Right>
@@ -122,9 +124,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <MenuItem>
-              <BsCart3 style={{ fontSize: 20 }} />
-            </MenuItem>
+           
           </Right>
         </Wrapper>
       </Container>

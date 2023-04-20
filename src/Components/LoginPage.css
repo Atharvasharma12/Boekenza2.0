@@ -20,7 +20,7 @@ body {
 .loginMain {
   box-shadow: 0px 0px 10px;
   width: 250px;
-  height: 280px;
+  /* height: 280px; */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -71,13 +71,13 @@ body {
 
 }
 
-
-
 input {
   outline: none;
 }
 
-
+.userItems{
+  background-color: pink;
+}
 
 
 

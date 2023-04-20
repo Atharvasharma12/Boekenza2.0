@@ -4,12 +4,15 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const sendmail = require("./SendMail");
+// const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const { upload } = require("@testing-library/user-event/dist/upload");
 
 // const sendmail = require("./SendMail");
 
 //creating app
 const app = express();
-
+// console.log(bcrypt("hello", 10));
 //for sending res and req we use these
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,8 +52,9 @@ const obg = {
 
 const middleware = (req, res, next) => {
   console.log("middleware");
-};
 
+  next();
+};
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
   // console.log(email);
@@ -63,7 +67,21 @@ app.post("/LoginPage", (req, res) => {
           console.log("user and password found");
           //sending message and details of user which is later use for whether login or not
           obg.milaKya = true;
-          res.send({ message: "user login success", user: foundUser });
+
+          productModel
+            .find({ SellerEmailID: email })
+            .then((userItems) => {
+              if (userItems) {
+                res.send({
+                  message: "user login success",
+                  user: foundUser,
+                  userItems: userItems,
+                });
+              } else {
+                console.log("user item not found");
+              }
+            })
+            .catch((err) => console.log(err));
         } else {
           console.log("password not matched");
           res.send({ message: "password not matched", notFound: "password" });
@@ -136,36 +154,68 @@ const productSchema = mongoose.Schema({
   productDiscription: "string",
   productPrice: "string",
   productImageURL: "string",
+  SellerName: "string",
+  SellerEmailID: "string",
+  productUploadDate: "string",
+  productExpiryDate: "string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
 
-app.post("/UploadProduct", (req, res) => {
+const uploadMiddelware = (req, res, next) => {
   console.log(req.body);
+  //to check if user is present or not
+  if (req.body.name && req.body.email) {
+    // res.send({message : "user is logged in"})
+    next();
+  } else {
+    res.send({ message: "user is not logged in" });
+  }
+};
 
+app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   //fetching data from the data sent by link from uploadproduct page
+  //saving the date of uploading
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const currentDate = new Date().getDate();
+  const currenthours = new Date().getHours();
+  const currentMinuts = new Date().getMinutes();
+  const currentSeconds = new Date().getSeconds();
+  const expiryDate = new Date(
+    `${currentMonth + 1} ${
+      currentDate + 10
+    } ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
+  ).getTime();
+
   const {
     productName,
     productCategory,
     productDiscription,
     productPrice,
     productImageURL,
-  } = req.body;
-
+  } = req.body.productDetail;
+  const name = req.body.name;
+  const email = req.body.email;
   let newProduct = new productModel({
-    //here LHS is for schema and RHS for giving data from user
+    //here LHS is for schema and RHS for reciving data from user
     productName: productName,
     productCategory: productCategory,
     productDiscription: productDiscription,
     productPrice: productPrice,
     productImageURL: productImageURL,
+    SellerName: name,
+    SellerEmailID: email,
+    productUploadDate: new Date().getTime(),
+    productExpiryDate: expiryDate,
   });
 
   newProduct
     .save()
     .then((result) => {
       console.log("sent");
-      res.send({ message: "uploaded successfuly" });
+
+      res.send({ message: "uploaded successfuly", productId: result._id });
     })
     .catch((err) => console.log(err));
 });
@@ -177,15 +227,13 @@ app.get("/products", (req, res) => {
     //all the products from the DB will get saved in this var
     //here we use var because we can intial it without assigning anything so coooL
     var items;
+    //find fuction get all the items present in DB
+    //it is fuction of mongoDB if we use SQL then we have to write SQL query here
     await productModel
-
-      //find fuction get all the items present in DB
-      //it is fuction of mongoDB if we use SQL then we have to write SQL query here
       .find()
       .then((res) => {
         items = res;
       })
-
       .catch((err) => console.log(err));
 
     //sending items to the frontend
@@ -227,7 +275,7 @@ app.post("/generateotp", (req, res) => {
     otp: newotp,
     email: req.body.email,
   };
-  // sendmail(toSendMail);
+  sendmail(toSendMail);
 
   //creating new instance each time for new user
   const newObj = new otpModel({
@@ -280,10 +328,85 @@ app.post("/verifyotp", (req, res) => {
   });
 });
 
+//>>>>>>>>>>>>>>>>>>>> SECTION FOR BYUER <<<<<<<<<<<<<<<<<<<<
+
+//middleware will check whether user is login
+const buyerPageMiddleware = (req, res, next) => {
+  const { name, email, _id, isPresent } = req.body;
+
+  if (name && email && _id && isPresent == true) {
+    next();
+  } else {
+    console.log("user is not present and cannot buy product");
+    res.send({ message: "user not logged in" });
+  }
+};
+
+app.post("/buyerPage", buyerPageMiddleware, (req, res) => {
+  console.log(req.body);
+  const { name, email, _id, isPresent } = req.body;
+
+  const {
+    productName,
+    productCategory,
+    productDiscription,
+    productPrice,
+    productImageURL,
+  } = req.body.buyersProduct;
+
+  productModel
+    .findOne({ productImageURL: productImageURL })
+    .then((found) => {
+      if (found) {
+        console.log(found);
+        const SellerEmailID = found.SellerEmailID;
+
+        //searching for product in backend and seeking information about the seller from product information
+
+        async function sendmail() {
+          let testAccount = await nodemailer.createTestAccount();
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+            host: "smtp.gmail.com",
+            // port: 587,
+            auth: {
+              user: process.env.USER_NAME,
+              pass: process.env.PASSWORD,
+            },
+          });
+
+          // send mail with defined transport object
+          let info = await transporter.sendMail({
+            from: process.env.USER_NAME, // sender address
+            to: `${SellerEmailID}`, // list of receivers
+            subject: "Buyer from Boekenza", // Subject line
+            text: `Hello dear seller, we have found buyer for your product.
+          PRODUCT NAME : ${productName} 
+          CATEGORY :  ${productCategory} 
+          DISCRIPITON : ${productDiscription}
+          PRICE : Rs.${productPrice}/-
+          IMAGE- ${productImageURL}
+
+          Buyer's Information - 
+          Name : ${name}
+          Email : ${email}`, // plain text body
+          });
+
+          console.log("mail send");
+          res.send({ message: "Notification sent to Seller" });
+        }
+
+        sendmail().catch(console.error);
+      }
+    })
+    .catch((err) => console.log(err));
+});
+
+
+
+
 //listen for starting server on port
 app.listen(
   process.env.BACKEND_PORT,
   console.log(`port started on ${process.env.BACKEND_PORT}`)
 );
-
-

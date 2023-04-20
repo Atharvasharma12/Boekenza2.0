@@ -61,11 +61,11 @@ const CategoryItem = ({ item }) => {
     <Container>
       <Image src={item.img} />
       <Info>
-        <Link to="/Products" element={Products}>
-        <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Link to="/AllProductList">
+          <Title>{item.title}</Title>
+          Linnk
+          <Button>SHOP NOW</Button>
         </Link>
-        
       </Info>
     </Container>
   );

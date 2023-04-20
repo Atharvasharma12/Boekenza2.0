@@ -13,7 +13,7 @@ function UploadProduct() {
 
   //useDispatch for insert value using dispatcher
   const dispatch = useDispatch();
-  console.log(email);
+  // console.log(email);
   const [productDetail, setProductDetail] = useState({
     productName: "",
     productCategory: "",
@@ -65,7 +65,7 @@ function UploadProduct() {
           email,
         })
         .then((res) => {
-          console.log(res.data.productId);
+          // console.log(res.data.productId);
           // alert(res.data.message);
           toast.success(`${res.data.message}`, {
             position: "top-center",
@@ -107,14 +107,14 @@ function UploadProduct() {
       .then((res) => {
         //do something else
         toast.update(id, {
-          render: "All is good",
+          render: "Image Uploaded",
           type: "success",
           isLoading: false,
           autoClose: 3000,
           hideProgressBar: false,
           closeButton: true,
         });
-        console.log(res.status);
+        // console.log(res.status);
         console.log("uploaded to cloudinary");
         // console.log(res.data.secure_url);
         // alert("image uploaded successfully");

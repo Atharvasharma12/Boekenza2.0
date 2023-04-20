@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -13,7 +13,7 @@ function LoginPage() {
     email: "",
     password: "",
   });
-  console.log(isUser);
+  // console.log(isUser);
   const handelChange = (event) => {
     const { name, value } = event.target;
     setUserData({
@@ -24,7 +24,7 @@ function LoginPage() {
 
   const dispatch = useDispatch();
 
-  const handelLogin = () => {
+  function handelLogin() {
     const { email, password } = userData;
     if (email && password) {
       axios
@@ -58,6 +58,7 @@ function LoginPage() {
           // console.log(res.data.user);
           setIsUSer(res.data.user);
           //dispatch to set value using redux
+
           dispatch({
             type: "setUerData",
             payload: res.data.user,
@@ -67,6 +68,8 @@ function LoginPage() {
             type: "isUser",
             payload: true,
           });
+
+         
           // console.log(res.data);
         })
         .catch((err) => {
@@ -83,11 +86,10 @@ function LoginPage() {
         progress: undefined,
         theme: "light",
       });
-  };
+  }
 
   //getting info of user of showing upload option
   const { isPresent } = useSelector((state) => state.custom);
-  // console.log(isPresent);
 
   //for logout it willll empty isUser
   // const handelLogOut = () => {
@@ -107,7 +109,7 @@ function LoginPage() {
             <h2>Login</h2>
           </div>
           <div className="loginForm">
-            <label>User Name</label>
+            {/* <label>User Name</label>
             <input
               name="email"
               value={userData.email}
@@ -123,12 +125,14 @@ function LoginPage() {
               onChange={handelChange}
               type="password"
               placeholder="Password"
-            />
+            /> */}
 
             <div className="loginButton">
               {isPresent ? (
                 <div className="logoutButton">
-                  <br />
+                  <Link to="userActivePlans">
+                    <button>Your active plan</button>
+                  </Link>
 
                   <p>
                     <Link to="UploadProduct">
@@ -138,6 +142,27 @@ function LoginPage() {
                 </div>
               ) : (
                 <>
+                  <label>User Name</label>
+                  <input
+                    name="email"
+                    value={userData.email}
+                    onChange={handelChange}
+                    type="text"
+                    placeholder="Email"
+                  />
+                  <br />
+                  <br />
+                  <label>Password</label>
+                  <br />
+                  <br />
+                  <input
+                    name="password"
+                    value={userData.password}
+                    onChange={handelChange}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <br />
                   <br />
                   <div className="logoutButton">
                     <button onClick={handelLogin}>Login</button>
@@ -146,6 +171,7 @@ function LoginPage() {
                         <button>Register</button>
                       </Link>
                     </div>
+                    <br />
                   </div>
                 </>
               )}
@@ -170,6 +196,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-
-

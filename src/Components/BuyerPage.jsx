@@ -56,7 +56,17 @@ function BuyerPage() {
           });
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.update(id, {
+          render: "Mail not sent",
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeButton: true,
+        });
+      });
   };
 
   return (

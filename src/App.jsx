@@ -8,6 +8,7 @@ import Navbar from "./Components/Navbar";
 import Announcement from "./Components/Announcement";
 import AllProductList from "./Components/AllProductList";
 import BuyerPage from "./Components/BuyerPage";
+import UserActivePlans from "./Components/UserActivePlans";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/AllProductList" element={<AllProductList />} />
         <Route path="/BuyerPage" element={<BuyerPage />} />
+        <Route
+          path="/LoginPage/userActivePlans"
+          element={<UserActivePlans />}
+        />
       </Routes>
     </>
   );

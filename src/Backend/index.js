@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const sendmail = require("./SendMail");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const { upload } = require("@testing-library/user-event/dist/upload");
 
 // const sendmail = require("./SendMail");
 
@@ -54,7 +55,6 @@ const middleware = (req, res, next) => {
 
   next();
 };
-
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
   // console.log(email);
@@ -67,7 +67,21 @@ app.post("/LoginPage", (req, res) => {
           console.log("user and password found");
           //sending message and details of user which is later use for whether login or not
           obg.milaKya = true;
-          res.send({ message: "user login success", user: foundUser });
+
+          productModel
+            .find({ SellerEmailID: email })
+            .then((userItems) => {
+              if (userItems) {
+                res.send({
+                  message: "user login success",
+                  user: foundUser,
+                  userItems: userItems,
+                });
+              } else {
+                console.log("user item not found");
+              }
+            })
+            .catch((err) => console.log(err));
         } else {
           console.log("password not matched");
           res.send({ message: "password not matched", notFound: "password" });
@@ -142,6 +156,8 @@ const productSchema = mongoose.Schema({
   productImageURL: "string",
   SellerName: "string",
   SellerEmailID: "string",
+  productUploadDate: "string",
+  productExpiryDate: "string",
 });
 
 const productModel = new mongoose.model("productModel", productSchema);
@@ -159,6 +175,19 @@ const uploadMiddelware = (req, res, next) => {
 
 app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   //fetching data from the data sent by link from uploadproduct page
+  //saving the date of uploading
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const currentDate = new Date().getDate();
+  const currenthours = new Date().getHours();
+  const currentMinuts = new Date().getMinutes();
+  const currentSeconds = new Date().getSeconds();
+  const expiryDate = new Date(
+    `${currentMonth + 1} ${
+      currentDate + 10
+    } ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
+  ).getTime();
+
   const {
     productName,
     productCategory,
@@ -177,6 +206,8 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
     productImageURL: productImageURL,
     SellerName: name,
     SellerEmailID: email,
+    productUploadDate: new Date().getTime(),
+    productExpiryDate: expiryDate,
   });
 
   newProduct
@@ -196,15 +227,13 @@ app.get("/products", (req, res) => {
     //all the products from the DB will get saved in this var
     //here we use var because we can intial it without assigning anything so coooL
     var items;
+    //find fuction get all the items present in DB
+    //it is fuction of mongoDB if we use SQL then we have to write SQL query here
     await productModel
-
-      //find fuction get all the items present in DB
-      //it is fuction of mongoDB if we use SQL then we have to write SQL query here
       .find()
       .then((res) => {
         items = res;
       })
-
       .catch((err) => console.log(err));
 
     //sending items to the frontend
@@ -325,31 +354,33 @@ app.post("/buyerPage", buyerPageMiddleware, (req, res) => {
     productImageURL,
   } = req.body.buyersProduct;
 
-  productModel.findOne({ productImageURL: productImageURL }).then((found) => {
-    if (found) {
-      console.log(found);
-      const SellerEmailID = found.SellerEmailID;
+  productModel
+    .findOne({ productImageURL: productImageURL })
+    .then((found) => {
+      if (found) {
+        console.log(found);
+        const SellerEmailID = found.SellerEmailID;
 
-      //searching for product in backend and seeking information about the seller from product information
+        //searching for product in backend and seeking information about the seller from product information
 
-      async function sendmail(data) {
-        let testAccount = await nodemailer.createTestAccount();
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          host: "smtp.gmail.com",
-          // port: 587,
-          auth: {
-            user: process.env.USER_NAME,
-            pass: process.env.PASSWORD,
-          },
-        });
+        async function sendmail() {
+          let testAccount = await nodemailer.createTestAccount();
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+            host: "smtp.gmail.com",
+            // port: 587,
+            auth: {
+              user: process.env.USER_NAME,
+              pass: process.env.PASSWORD,
+            },
+          });
 
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-          from: process.env.USER_NAME, // sender address
-          to: `${SellerEmailID}`, // list of receivers
-          subject: "Buyer from Boekenza", // Subject line
-          text: `Hello dear seller, we have found buyer for your product.
+          // send mail with defined transport object
+          let info = await transporter.sendMail({
+            from: process.env.USER_NAME, // sender address
+            to: `${SellerEmailID}`, // list of receivers
+            subject: "Buyer from Boekenza", // Subject line
+            text: `Hello dear seller, we have found buyer for your product.
           PRODUCT NAME : ${productName} 
           CATEGORY :  ${productCategory} 
           DISCRIPITON : ${productDiscription}
@@ -359,16 +390,19 @@ app.post("/buyerPage", buyerPageMiddleware, (req, res) => {
           Buyer's Information - 
           Name : ${name}
           Email : ${email}`, // plain text body
-        });
+          });
 
-        console.log("mail send");
-        res.send({ message: "Notification sent to Seller" });
+          console.log("mail send");
+          res.send({ message: "Notification sent to Seller" });
+        }
+
+        sendmail().catch(console.error);
       }
-
-      sendmail().catch(console.error);
-    }
-  });
+    })
+    .catch((err) => console.log(err));
 });
+
+
 
 
 //listen for starting server on port

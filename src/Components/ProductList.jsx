@@ -28,45 +28,62 @@ function ProductList() {
   }, [dispatch]);
 
   const handelIAmIntersted = (selectedProduct) => {
-    console.log(selectedProduct);
+
     dispatch({
       type: "setSeletedProduct",
       payload: selectedProduct,
     });
   };
 
+  
+  
   return (
     <>
       <h1 class="items">Items</h1>
 
       <div className="mainProductsDiv">
         {item
-          .filter((element) =>
-            element.productName.toLowerCase().includes(productNameForSearch)
-          )
+
+          .filter((element) => {
+            return (
+              element.productName
+                .toLowerCase()
+                .includes(productNameForSearch) &&
+              element.productCategory
+                .toLowerCase()
+                .includes(productNameForSearch)
+            );
+          })
           .map((element, id) => {
             return (
-              <div key={id} className="productDiv">
-                <div className="imageDiv">
-                  <img src={element.productImageURL} alt="img" />
+              <div class="product-card">
+                <div class="badge">Hot</div>
+                <div class="product-tumb">
+                  <img src={element.productImageURL} alt="" />
                 </div>
-                <div>
-                  <span>{element.productCategory}</span>
-                  <div className="ProductNamePrice">
-                    <h2>{element.productName}</h2>
-                    <h6>Rs.{element.productPrice}/-</h6>
-                  </div>
-                  <p>{element.productDiscription}</p>
-                  <Link to="/BuyerPage" element={<BuyerPage />}>
-                    <div className="InterestedButton">
-                      <button
-                        class="add_to_cart"
-                        onClick={() => handelIAmIntersted(element)}
-                      >
-                        I Am Interested
-                      </button>
+                <div class="product-details">
+                  <span class="product-catagory">
+                    {element.productCategory}
+                  </span>
+                  <h4>
+                    <a href="">{element.productName}</a>
+                  </h4>
+
+                  <div class="product-bottom-details">
+                    <div class="product-price">Rs.{element.productPrice}/-</div>
+                    <div class="product-links">
+                      <Link to="/BuyerPage" element={<BuyerPage />}>
+                        <div className="InterestedButton">
+                          <button
+                            class="add_to_cart"
+                            onClick={() => handelIAmIntersted(element)}
+                          >
+                            BUY
+                          </button>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               </div>
             );

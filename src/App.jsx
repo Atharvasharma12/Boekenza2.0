@@ -29,6 +29,7 @@ function App() {
         <Route path="/LoginPage/UploadProduct" element={<UploadProduct />} />
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/AllProductList" element={<AllProductList />} />
+        <Route path="/LoginPage/AllProductList" element={<AllProductList />} />
         <Route path="/BuyerPage" element={<BuyerPage />} />
       </Routes>
     </>

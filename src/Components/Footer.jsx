@@ -123,7 +123,7 @@
             <BsFillTelephoneFill style={{marginRight:"10px"}}/> +1 234 56 78
           </ContactItem>
           <ContactItem>
-            <AiOutlineMail style={{marginRight:"10px"}} /> boekenza273644@gmail.com
+            <AiOutlineMail style={{marginRight:"10px"}} /> boekenza@gmail.com
           </ContactItem>
         </Right>
       </Container>

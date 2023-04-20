@@ -1,7 +1,8 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    // img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    img:"./photos/WhatsApp Image 2023-03-27 at 22.20.35.jpeg",
     title: "BOEKENZA",
     desc: "Welcome to our online stationary store, where we offer a unique selection of pre-loved stationary items that have been gently used by others. We believe in reducing waste and providing our customers with affordable options that are both sustainable and functional.",
     bg: "f5fafd",

@@ -110,7 +110,7 @@ const Navbar = () => {
               <div class="scene">
                 <div class="cube">
                   <span class="side top">Sign in</span>
-                  <span class="side front">Start Selling</span>
+                  <span class="side front">Join us</span>
                 </div>
               </div>
             </Link>

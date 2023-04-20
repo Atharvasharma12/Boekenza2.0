@@ -1,4 +1,3 @@
-import { IoMdSend } from "react-icons/io";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -26,41 +25,15 @@ const Desc = styled.div`
   }
 `;
 
-const InputContainer = styled.div`
-  width: 50%;
-  height: 40px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid lightgray;
-`;
 
-const Input = styled.input`
-  border: none;
-  flex: 8;
-  padding-left: 20px;
-`;
 
-const Button = styled.button`
-  flex: 1;
-  border: none;
-  background-color: teal;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-`;
 
 const Contact = () => {
   return (
     <Container>
+      
       <Title>Contact Us</Title>
-      <Desc>Get timely updates from your favorite products.</Desc>
-      <InputContainer>
-        <Input placeholder="Your email" />
-        <Button>
-          <IoMdSend />
-        </Button>
-      </InputContainer>
+      <Desc>Mail us at boekenza@gmail.com.</Desc>
     </Container>
   );
 };

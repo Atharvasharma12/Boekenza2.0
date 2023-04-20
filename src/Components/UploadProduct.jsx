@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+
 import "./UploadProduct.css";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -73,6 +74,7 @@ function UploadProduct() {
         })
         .catch((err) => console.log(err));
     } else {
+
       // alert("Invalid");
       toast.warning("invalid", {
         position: "top-center",

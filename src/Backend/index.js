@@ -46,15 +46,18 @@ app.get("/", (req, res) => {
   res.send("server is running....");
 });
 
-const obg = {
-  milaKya: false,
-};
+
 
 const middleware = (req, res, next) => {
   console.log("middleware");
 
   next();
 };
+
+app.get("/LoginPage", (req, res) => {
+  console.log(req);
+});
+
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
   // console.log(email);
@@ -66,7 +69,6 @@ app.post("/LoginPage", (req, res) => {
         if (password === foundUser.password) {
           console.log("user and password found");
           //sending message and details of user which is later use for whether login or not
-          obg.milaKya = true;
 
           productModel
             .find({ SellerEmailID: email })

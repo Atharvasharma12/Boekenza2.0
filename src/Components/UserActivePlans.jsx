@@ -71,8 +71,7 @@ function UserActivePlans() {
                   {seconds < 10 ? "0" + seconds : seconds} seconds left */}
                 </h6>
               </div>
-              <button>Renew</button>
-              <button>Remove</button>
+              {/* <button>Renew</button> */}
             </div>
           );
         })}

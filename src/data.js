@@ -10,7 +10,7 @@ export const sliderItems = [
   {
     id: 2,
     img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    title: "AMAZING COLLECTION",
+    title: "Sell Your Products with Ease",
     desc: "Our collection includes a variety of writing tools, notebooks, journals, and desk organizers that have been thoroughly cleaned and sanitized for your peace of mind. We also carry limited edition and hard-to-find items that are no longer available in stores.",
     bg: "fcf1ed",
   },

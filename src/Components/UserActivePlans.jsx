@@ -66,9 +66,9 @@ function UserActivePlans() {
               </div>
               <div>
                 <h6>
-                  {/* {"0" + days} days {hours < 10 ? "0" + hours : hours} hours{" "}
+                  {"0" + days} days {hours < 10 ? "0" + hours : hours} hours{" "}
                   {minutes < 10 ? "0" + minutes : minutes} minutes{" "}
-                  {seconds < 10 ? "0" + seconds : seconds} seconds left */}
+                  {seconds < 10 ? "0" + seconds : seconds} seconds left
                 </h6>
               </div>
               {/* <button>Renew</button> */}

@@ -1,0 +1,9 @@
+.footerBox{
+    display: flex;
+    
+}
+
+.leftFooter{
+    max-width: 50%;
+    margin:12px 10%;
+}

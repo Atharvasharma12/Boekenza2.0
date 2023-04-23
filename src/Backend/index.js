@@ -165,7 +165,7 @@ const productSchema = mongoose.Schema({
 const productModel = new mongoose.model("productModel", productSchema);
 
 const uploadMiddelware = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   //to check if user is present or not
   if (req.body.name && req.body.email) {
     // res.send({message : "user is logged in"})
@@ -184,12 +184,14 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   const currenthours = new Date().getHours();
   const currentMinuts = new Date().getMinutes();
   const currentSeconds = new Date().getSeconds();
-  const expiryDate = new Date(
-    `${currentMonth + 1} ${
-      currentDate + 10
-    } ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
-  ).getTime();
-
+  const expiryDate =
+    new Date(
+      `${
+        currentMonth + 1
+      } ${currentDate} ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
+    ).getTime() +
+    10 * 24 * 60 * 60 * 1000;
+  console.log(currentDate);
   const {
     productName,
     productCategory,
@@ -211,6 +213,7 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
     productUploadDate: new Date().getTime(),
     productExpiryDate: expiryDate,
   });
+  console.log(newProduct);
 
   newProduct
     .save()

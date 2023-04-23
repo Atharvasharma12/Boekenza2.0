@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const sendmail = require("./SendMail");
+// const sendmail = require("./SendMail");
 // const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const { upload } = require("@testing-library/user-event/dist/upload");
@@ -46,15 +46,18 @@ app.get("/", (req, res) => {
   res.send("server is running....");
 });
 
-const obg = {
-  milaKya: false,
-};
+
 
 const middleware = (req, res, next) => {
   console.log("middleware");
 
   next();
 };
+
+app.get("/LoginPage", (req, res) => {
+  console.log(req.body);
+});
+
 app.post("/LoginPage", (req, res) => {
   const { email, password } = req.body;
   // console.log(email);
@@ -66,7 +69,6 @@ app.post("/LoginPage", (req, res) => {
         if (password === foundUser.password) {
           console.log("user and password found");
           //sending message and details of user which is later use for whether login or not
-          obg.milaKya = true;
 
           productModel
             .find({ SellerEmailID: email })
@@ -163,7 +165,7 @@ const productSchema = mongoose.Schema({
 const productModel = new mongoose.model("productModel", productSchema);
 
 const uploadMiddelware = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   //to check if user is present or not
   if (req.body.name && req.body.email) {
     // res.send({message : "user is logged in"})
@@ -182,12 +184,14 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
   const currenthours = new Date().getHours();
   const currentMinuts = new Date().getMinutes();
   const currentSeconds = new Date().getSeconds();
-  const expiryDate = new Date(
-    `${currentMonth + 1} ${
-      currentDate + 10
-    } ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
-  ).getTime();
-
+  const expiryDate =
+    new Date(
+      `${
+        currentMonth + 1
+      } ${currentDate} ${currentYear}, ${currenthours}:${currentMinuts}:${currentSeconds}`
+    ).getTime() +
+    10 * 24 * 60 * 60 * 1000;
+  console.log(currentDate);
   const {
     productName,
     productCategory,
@@ -209,6 +213,7 @@ app.post("/UploadProduct", uploadMiddelware, (req, res) => {
     productUploadDate: new Date().getTime(),
     productExpiryDate: expiryDate,
   });
+  console.log(newProduct);
 
   newProduct
     .save()
@@ -275,7 +280,45 @@ app.post("/generateotp", (req, res) => {
     otp: newotp,
     email: req.body.email,
   };
-  sendmail(toSendMail);
+  // sendmail(toSendMail);
+  //sending mail function
+
+  async function sendmail(toSendMail) {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    
+    let testAccount = await nodemailer.createTestAccount();
+  
+    // create reusable transporter object using the default SMTP transport
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      // port: 587,
+      auth: {
+        user: "boekenza@gmail.com",
+        pass: "gkpvarzplcquafax",
+      },
+    });
+  
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: "boekenza@gmail.com", // sender address
+      to: `${req.body.email}`, // list of receivers
+      subject: "Registration verification", // Subject line
+      text: `otp for verification is ${newotp}`, // plain text body
+      // html: "<b> otp for verification is {otp} </b>", // html body
+    });
+  
+    // console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+  
+    // Preview only available when sending through an Ethereal account
+    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  }
+  
+  sendmail().catch(console.error);
+  
 
   //creating new instance each time for new user
   const newObj = new otpModel({

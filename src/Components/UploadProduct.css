@@ -1,95 +1,95 @@
-.mainForm{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 300px;
-    height:400px;
-    border: 1px solid blue;
-    margin-bottom: 2px;
-    box-shadow: 10px;
-    border-radius: 5px;
+.mainForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* width: 300px; */
+  /* height: 400px; */
+  /* border: 1px solid blue; */
+  /* margin-bottom: 2px; */
+  /* box-shadow: 10px; */
+  border-radius: 5px;
+  /* background-color: rgb(217, 237, 243); */
+  width: 300px;
+  /* border: 2px solid black; */
+  padding: 20px;
+  margin: auto;
+  box-shadow: 0px 10px 15px 14px rgba(0,0,0,0.1);
 }
-h1{
-    word-wrap: break-word;
-    text-transform: capitalize;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top:-6px;
-    font-weight: none;
-    font-style: normal;
-    font-family: 'Times New Roman', Times, serif;
-}
-.mainForm
-{
-    background-color: rgb(217, 237, 243);
-    width: 300px;
-    border: 2px solid black;
-    padding: 50px;
-    margin-left: 580px;
-    
-}
-.mainForm .heading{
-    text-transform: capitalize;
-    margin-top: 30px;
-    font-size: 23px;
-}
-.itemDetails
-{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-}
-input[type=text], select {
-    width: 100%;
-    padding: 10px 10px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    box-sizing: border-box;
-  }
-  input[type=number], select {
-    width: 100%;
-    padding: 10px 10px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-   
-  }
-  input[type=file], select {
-    width: 100%;
-    padding: 10px 10px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  
-  }
-  .btn{
-    width: 100%;
-    padding: 10px 10px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color:  rgb(148, 216, 239)
-  }
-  .submit_btn{
-    width: 100%;
-    padding: 10px 10px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color:  rgb(148, 216, 239)
-  }
 
-  
+h1 {
+  word-wrap: break-word;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -6px;
+  font-weight: none;
+  font-style: normal;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.mainForm .heading {
+  text-transform: capitalize;
+  margin-top: 30px;
+  font-size: 23px;
+}
+.itemDetails {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="file"],
+select {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.btn {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+}
+.submit_btn {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+
+}

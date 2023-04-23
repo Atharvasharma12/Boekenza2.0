@@ -9,7 +9,7 @@ import AllProductList from "./AllProductList";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -65,6 +65,7 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   height: 100%;
+  width: 100%;
 `;
 
 const InfoContainer = styled.div`

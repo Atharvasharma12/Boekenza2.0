@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import "./UserActivePlans.css";
@@ -13,13 +13,32 @@ function UserActivePlans() {
     .post("http://localhost:9191/loginpage", userData)
     .then((res) => {
       //logged in user total uploaded items according to plan
-
       dispatch({
         type: "setuserItems",
         payload: res.data.userItems,
       });
     })
     .catch((err) => console.log(err));
+
+  // axios
+  //   .get("http://localhost:9191/loginpage", userData)
+  //   .then((res) => {
+  //     //logged in user total uploaded items according to plan
+  //     console.log(res);
+  //     dispatch({
+  //       type: "setuserItems",
+  //       payload: res.data.userItems,
+  //     });
+  //   })
+  //   .catch((err) => console.log(err));
+
+  const handelRemove = () => {
+    console.log("remove");
+  };
+
+  const handelRenew = () => {
+    console.log("renew");
+  };
 
   return (
     <>
@@ -39,20 +58,23 @@ function UserActivePlans() {
               <div className="imageDiv">
                 <img src={element.productImageURL} alt="" />
               </div>
-              <div>
+              <div className="productNameDiv">
                 <h6>{element.productName}</h6>
               </div>
-              <div>
-                <h6>Rs.{element.productPrice}/-</h6>
+              <div className="productPrice">
+                <p>Rs.{element.productPrice}/-</p>
               </div>
-              <div>
-                <h6>
-                  {"0" + days} days {hours < 10 ? "0" + hours : hours} hours{" "}
-                  {minutes < 10 ? "0" + minutes : minutes} minutes{" "}
-                  {seconds < 10 ? "0" + seconds : seconds} seconds left
-                </h6>
+              <div className="productTimeLeft">
+                <span>
+                  <i>Expires in</i>
+                </span>
+                <p>
+                  {"0" + days} : {hours < 10 ? "0" + hours : hours} :{" "}
+                  {minutes < 10 ? "0" + minutes : minutes} :{" "}
+                  {seconds < 10 ? "0" + seconds : seconds} Days
+                </p>
               </div>
-              <button>Renew</button>
+              {/* <button>Renew</button> */}
             </div>
           );
         })}

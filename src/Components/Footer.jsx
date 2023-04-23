@@ -4,11 +4,9 @@
   import { IoLocationSharp } from "react-icons/io5";
   import { BsFillTelephoneFill } from "react-icons/bs";
   import { AiOutlineMail } from "react-icons/ai";
+  import "./Footer.css";
 
-  const Container = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-  `;
+  const Container = styled.div``;
 
   const Left = styled.div`
     flex: 1;
@@ -74,58 +72,59 @@
     display: flex;
     align-items: center;
   `;
-  
+
   const Payment = styled.img`
-      width: 50%;
+    width: 50%;
   `;
-  
+
   const Footer = () => {
     return (
       <Container>
-        <Left>
-          <Logo>BOEKENZA.</Logo>
-          <Desc>
-          We believe in reducing waste and providing our customers with affordable options that are both sustainable and functional.By purchasing pre-loved stationary items from our store, you're not only saving money but also contributing to a more sustainable future. Join us in our mission
-          </Desc>
-          <SocialContainer>
-            <SocialIcon color="3B5999">
-              <SiLinkedin />
-            </SocialIcon>
-            <SocialIcon color="E4405F">
-              <GrInstagram />
-            </SocialIcon>
-            <SocialIcon color="E60023">
-              <GrMail />
-            </SocialIcon>
-          </SocialContainer>
-        </Left>
-        <Center>
-          <Title>Useful Links</Title>
-          <List>
-            <ListItem>Home</ListItem>
-            <ListItem>Cart</ListItem>
-            <ListItem>Man Fashion</ListItem>
-            <ListItem>Woman Fashion</ListItem>
-            <ListItem>Accessories</ListItem>
-            <ListItem>My Account</ListItem>
-            <ListItem>Order Tracking</ListItem>
-            <ListItem>Wishlist</ListItem>
-            <ListItem>Wishlist</ListItem>
-            <ListItem>Terms</ListItem>
-          </List>
-        </Center>
-        <Right>
-          <Title>Contact</Title>
-          <ContactItem>
-            <IoLocationSharp style={{marginRight:"10px"}}/> AITR , Indore (M.P.)
-          </ContactItem>
-          <ContactItem>
-            <BsFillTelephoneFill style={{marginRight:"10px"}}/> +1 234 56 78
-          </ContactItem>
-          <ContactItem>
-            <AiOutlineMail style={{marginRight:"10px"}} /> boekenza@gmail.com
-          </ContactItem>
-        </Right>
+        <div className="footerBox">
+          <div className="leftFooter">
+            <Left>
+              <Logo>BOEKENZA.</Logo>
+              <Desc>
+                We believe in reducing waste and providing our customers with
+                affordable options that are both sustainable and functional.By
+                purchasing pre-loved stationary items from our store, you're not
+                only saving money but also contributing to a more sustainable
+                future. Join us in our mission
+              </Desc>
+              <SocialContainer>
+                <SocialIcon color="3B5999">
+                  <SiLinkedin />
+                </SocialIcon>
+                <SocialIcon color="E4405F">
+                  <GrInstagram />
+                </SocialIcon>
+                <SocialIcon color="E60023">
+                  <GrMail />
+                </SocialIcon>
+              </SocialContainer>
+            </Left>
+          </div>
+          {/* <Center>
+          
+        </Center> */}
+          <div>
+            <Right>
+              <Title>Contact</Title>
+              <ContactItem>
+                <IoLocationSharp style={{ marginRight: "10px" }} /> AITR ,
+                Indore (M.P.)
+              </ContactItem>
+              <ContactItem>
+                <BsFillTelephoneFill style={{ marginRight: "10px" }} /> +1 234
+                56 78
+              </ContactItem>
+              <ContactItem>
+                <AiOutlineMail style={{ marginRight: "10px" }} />{" "}
+                boekenza@gmail.com
+              </ContactItem>
+            </Right>
+          </div>
+        </div>
       </Container>
     );
   };
